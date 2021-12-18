@@ -1,6 +1,6 @@
 <div class="bg-blue-500 w-full">
   <div class="h-14 flex justify-around items-center">
-    <div class="flex items-center space-x-5">
+    <div class="flex items-center space-x-7">
       <%= link_to root_path, class: "text-2xl text-white font-semibold" do %>
         Full SMS
       <% end %>
@@ -15,9 +15,9 @@
       </div>
     </div>
     <div class="flex">
-      <div class="bg-green-500 text-sm px-3 py-2 rounded-lg text-white font-bold hover:bg-green-400">
+      <%= link_to log_in_path, class: "bg-green-500 text-sm px-3 py-2 rounded-lg text-white font-bold hover:bg-green-400" do %>
         Log in
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
