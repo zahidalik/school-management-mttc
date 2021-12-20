@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  second_name: MyString
+  last_name: MyString
+  father_name: MyString
+  mother_name: MyString
+  d_o_b: 2021-12-18
+  birth_cert: false
+  contact_one: 1
+  contact_two: 1
+  city: MyString
+  region: MyString
+  religion: MyString
+  qualifications: MyString
+  admission_date: 2021-12-18
+  admission_number: 1
+
+two:
+  first_name: MyString
+  second_name: MyString
+  last_name: MyString
+  father_name: MyString
+  mother_name: MyString
+  d_o_b: 2021-12-18
+  birth_cert: false
+  contact_one: 1
+  contact_two: 1
+  city: MyString
+  region: MyString
+  religion: MyString
+  qualifications: MyString
+  admission_date: 2021-12-18
+  admission_number: 1
