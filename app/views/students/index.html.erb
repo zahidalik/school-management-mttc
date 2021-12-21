@@ -6,9 +6,10 @@
     <% end %>
   </div>
 <% end %>
-<%= turbo_frame_tag @student do %>
-  <div class="w-auto h-auto mt-8 flex flex-col justify-center items-center">
-    <h1 class="text-2xl text-gray-700 font-light">New Student</h1>
-    <%= render "students/form" %>
+<%= turbo_frame_tag "new_student" do %>
+  <div class="flex flex-col justify-center items-center">
+    <%= link_to new_student_path, class: "px-3 py-2 bg-green-600 text-gray-50 text-2xl hover:bg-green-400 rounded-lg" do %>
+      New Student
+    <% end %>
   </div>
 <% end %>

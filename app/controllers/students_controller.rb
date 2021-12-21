@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
         format.turbo_stream
       end
     else
-      render(:new)
+      render :new
     end
   end
 
