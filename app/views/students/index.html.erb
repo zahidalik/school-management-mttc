@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "students" do %>
+  <div class="ml-8 my-8">
+    <div class="text-3xl font-light text-gray-700 flex justify-center items-center">All Students</div>
+    <% @students.each do |student| %>
+      <%= render "students/student", student: student %>
+    <% end %>
+  </div>
+<% end %>
+<%= turbo_frame_tag @student do %>
+  <div class="w-auto h-auto mt-8 flex flex-col justify-center items-center">
+    <h1 class="text-2xl text-gray-700 font-light">New Student</h1>
+    <%= render "students/form" %>
+  </div>
+<% end %>

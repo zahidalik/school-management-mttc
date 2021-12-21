@@ -1,10 +1,6 @@
-<div class="w-full h-auto flex justify-center items-center">
+<div class="w-auto h-auto flex justify-center items-center">
   <div class="rounded-lg">
-    <div class="my-16 mx-32 flex flex-col justify-center items-center">
-      <h1 class="text-3xl font-extralight">
-        New Student
-      </h1>
-
+    <div class="mt-1 mx-32 flex flex-col justify-center items-center">
       <%= simple_form_for @student, 
             defaults: { input_html: {
             class: "p-1 my-4 border border-zinc-400 rounded-lg text-sm text-gray-700 fonts-normal focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" },
@@ -25,7 +21,7 @@
         <%= f.input :father_name, label: "Father's Name" %>
         <%= f.input :mother_name, label: "Mother's Name" %>
         <%= f.input :d_o_b, label: "Date Of Birth" %>
-        <%= f.input :birth_cert, label: "Birth Certificate Available?", as: :boolean %>
+        <%= f.input :birth_cert, label: "Birth Certificate Available?", collection: ["Yes", "No"], default: "Yes" %>
         <%= f.input :contact_one, label: "Contact Number" %>
         <%= f.input :contact_two, label: "Another Contact Number" %>
         <div class="border border-blue-400 rounded-lg">
@@ -41,7 +37,7 @@
         <%= f.input :qualifications, label: "Qualification(s), 'Both Hauza and Secular'" %>
         <%= f.input :admission_date %>
         <%= f.input :admission_number %>
-        <%= f.submit "Add Student", class: "bg-green-600 px-3 py-2 text-lg text-gray-50 rounded-lg hover:bg-green-400" %>
+        <%= f.submit class: "bg-green-600 px-3 py-2 text-lg text-gray-50 rounded-lg hover:bg-green-400" %>
       <% end %>
     </div>
   </div>

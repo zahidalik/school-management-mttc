@@ -1,4 +1,9 @@
 class StudentsController < ApplicationController
+
+  def index
+    @students = Student.all
+    @student = Student.new
+  end
   
   def show
     @student = Student.find(params[:id])  
@@ -8,12 +13,27 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      render @student
+    else
+      render :edit
+    end
+  end
+
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to root_path
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
-      render "new"
+      render(:new)
     end
   end
 

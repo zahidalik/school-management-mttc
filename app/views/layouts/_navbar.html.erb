@@ -4,12 +4,12 @@
       <%= link_to root_path, class: "text-2xl text-white font-semibold" do %>
         Full SMS
       <% end %>
-      <div class="py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white">
-        Something
-      </div>
-      <div class="py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white">
-        Another one
-      </div>
+      <%= link_to "#", class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
+        Teachers
+      <% end %>
+      <%= link_to students_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
+        Students
+      <% end %>
       <div class="py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white">
         Third one
       </div>

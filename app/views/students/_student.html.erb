@@ -1,0 +1,17 @@
+<%= turbo_frame_tag(dom_id(student)) do %>
+  <div class="ml-8 text-xl font-light text-gray-700">
+    <ul class="list-outside">
+      <li>
+        <%= student.first_name %>
+        <%= student.second_name %>
+        <%= student.last_name %>
+        <%= link_to student_path(student), data: {"turbo_frame": "_top"}, class: "ml-4 px-3 py-1 bg-blue-400 text-sm text-gray-50 rounded-lg" do %>
+          Show
+        <% end %>
+        <%= link_to edit_student_path(student), class: "ml-4 px-3 py-1 bg-blue-400 text-sm text-gray-50 rounded-lg" do %>
+          Edit
+        <% end %>
+      </li>
+    </ul>
+  </div>
+<% end %>
