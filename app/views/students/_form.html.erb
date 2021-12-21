@@ -20,8 +20,8 @@
         </div>
         <%= f.input :father_name, label: "Father's Name" %>
         <%= f.input :mother_name, label: "Mother's Name" %>
-        <%= f.input :d_o_b, label: "Date Of Birth" %>
-        <%= f.input :birth_cert, label: "Birth Certificate Available?", collection: ["Yes", "No"], default: "Yes" %>
+        <%= f.input :d_o_b, label: "Date Of Birth", start_year: Date.today.year - 30, end_year: Date.today.year %>
+        <%= f.input :birth_cert, label: "Birth Certificate Available?", as: :boolean %>
         <%= f.input :contact_one, label: "Contact Number" %>
         <%= f.input :contact_two, label: "Another Contact Number" %>
         <div class="border border-blue-400 rounded-lg">
@@ -35,7 +35,7 @@
         </div>
         <%= f.input :religion, collection: ["Sunni Muslim", "Shia Muslim", "Christian"] %>
         <%= f.input :qualifications, label: "Qualification(s), 'Both Hauza and Secular'" %>
-        <%= f.input :admission_date %>
+        <%= f.input :admission_date, start_year: Date.today.year - 10, end_year: Date.today.year %>
         <%= f.input :admission_number %>
         <%= f.submit class: "bg-green-600 px-3 py-2 text-lg text-gray-50 rounded-lg hover:bg-green-400" %>
       <% end %>
