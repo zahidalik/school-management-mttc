@@ -2,7 +2,7 @@
   <%= @student.first_name %>'s Dashboard
 </div>
 <div class="flex justify-center items-center">
-  <div class="grid grid-cols-4 gap-4 text-gray-700">
+  <div class="flex flex-col justify-center items-center md:grid md:grid-cols-4 md:gap-2 text-gray-700">
     <div><u>Name:</u> 
       <%= @student.first_name %>
       <%= @student.second_name %>
@@ -48,4 +48,23 @@
       <%= @student.admission_number %>
     </div>
   </div>
+</div>
+
+<%= turbo_frame_tag "terms" do %>
+  <div class="flex justify-center">
+    <div class="mt-16 grid grid-cols-12 gap-6">
+      <% if @student.terms.any? %>
+        <% @student_terms.each do |term| %>
+          <%= render "terms/term", term: term %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="mt-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_term" do %>
+    <%= link_to new_student_term_path(@student), class: "px-4 py-2 bg-green-600 text-lg text-gray-50 drop-shadow-2xl hover:bg-green-400" do %>
+      Add New Term
+    <% end %>
+  <% end %>
 </div>

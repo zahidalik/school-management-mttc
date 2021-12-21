@@ -8,8 +8,8 @@
             error_html: { class: "ml-2 text-red-700"}
             },
             html: { class: "my-10" } do |f| %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence %>
         <div class="border border-blue-400 rounded-lg">
-          <%= f.error_notification message: f.object.errors[:base].to_sentence %>
           <div class="px-2 py-4 flex flex-col md:flex-row items-baseline space-y-2 md:space-x-7">
             <h1 class="pb-2 text-lg font-light">
               Name

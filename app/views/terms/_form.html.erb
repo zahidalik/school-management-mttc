@@ -1,0 +1,9 @@
+<%= simple_form_for([student, term], defaults: { label_html: { class: "mr-2 text-lg text-gray-700 font-semibold" }, input_html: { class: "mr-2 px-1 py-1 text-lg text-gray-700 rounded-lg bg-orange-300" } },html: { class: "flex flex-col md:flex md:flex-row justify-center items-center" }) do |f| %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence %>
+  <div class="bg-orange-500 mr-2 px-1 py-1 text-gray-50"><%= student.first_name %></div>
+  <%= f.input :name, label: "Term", 
+    collection: ["Start", "Term 1", "Term 2", "Term 3", "Term 4", "Term 5", "Term 6", "Term 7", "Term 8", "Term 9", "Term 10", "Term 11", "Term 12"] %>
+  <%= f.input :start_date, start_year: Date.today.year - 20, end_year: Date.today.year + 1 %>
+  <%= f.input :end_date, start_year: Date.today.year - 20, end_year: Date.today.year + 1 %>       
+  <%= f.submit class: "bg-green-600 px-3 py-2 text-sm text-gray-50 rounded-lg hover:bg-green-400" %>
+<% end %>

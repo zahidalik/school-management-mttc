@@ -6,4 +6,6 @@ class Student < ApplicationRecord
             :admission_date, :admission_number,
             presence: true
   validates_uniqueness_of :admission_number
+
+  has_many :terms
 end
