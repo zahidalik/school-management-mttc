@@ -8,6 +8,20 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    @subject = Subject.new(subject_params)
     
+    if @subject.save
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def subject_params
+    params.require(:subject).permit(:name, :book)
   end
 end

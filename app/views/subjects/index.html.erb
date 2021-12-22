@@ -1,1 +1,17 @@
-<h1>You are in subjects index</h1>
+<%= turbo_frame_tag "subjects" do %>
+  <div class="mt-10 flex justify-around items-center">
+    <div class="grid grid-cols-5 gap-3">
+      <% @subjects.each do |subject| %>
+        <%= render "subjects/subject", subject: subject %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "new_subject" do %>
+  <div class="mt-8 flex justify-center items-center">
+    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded" do %>
+      New Subject
+    <% end %>
+  </div>
+<% end %>
