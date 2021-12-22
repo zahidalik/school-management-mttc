@@ -2,7 +2,7 @@
   <div class="h-14 flex justify-around items-center">
     <div class="flex items-center space-x-7">
       <%= link_to root_path, class: "text-2xl text-white font-semibold" do %>
-        Full SMS
+        MTTC SMS
       <% end %>
       <%= link_to "#", class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
         Teachers
@@ -10,9 +10,9 @@
       <%= link_to students_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
         Students
       <% end %>
-      <div class="py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white">
-        Third one
-      </div>
+      <%= link_to subjects_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
+        Subjects
+      <% end %>
     </div>
     <div class="flex">
       <%= link_to log_in_path, class: "bg-green-500 text-sm px-3 py-2 rounded-lg text-white font-bold hover:bg-green-400" do %>
