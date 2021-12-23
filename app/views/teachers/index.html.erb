@@ -1,0 +1,19 @@
+<%= turbo_stream_from "teachers_list" %>
+<%= turbo_frame_tag "teachers" do %>
+  <div class="mt-8 flex flex-col items-center">
+    <div class="w-4/5 mt-4">
+      <div class="">
+        <% @teachers.each do |teacher| %>
+          <%= render "teachers/teacher", teacher: teacher %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= turbo_frame_tag "new_teacher" do %>
+  <div class="mt-8 flex justify-center items-center">
+    <%= link_to new_teacher_path, class: "px-3 py-2 bg-green-600 text-gray-50 text-2xl hover:bg-green-400 rounded-lg" do %>
+      New Teacher
+    <% end %>
+  </div>
+<% end %>
