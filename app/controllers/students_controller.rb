@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
     if @student.save
       respond_to do |format|
         format.turbo_stream
+        format.html { redirect_to students_url }
       end
     else
       render :new

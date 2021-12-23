@@ -13,6 +13,7 @@ class SubjectsController < ApplicationController
     if @subject.save
       respond_to do |format|
         format.turbo_stream
+        format.html { redirect_to subjects_url}
       end
     else
       render :new
