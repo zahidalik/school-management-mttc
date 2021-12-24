@@ -1,7 +1,7 @@
 <%= turbo_stream_from "students_list" %>
 <%= turbo_frame_tag "students" do %>
   <div class="mt-8 flex flex-col items-center">
-    <div class="w-4/5 mt-3">
+    <div class="w-1/2 mt-3">
       <div class="">
         <% @students.each do |student| %>
           <%= render "students/student", student: student %>
@@ -17,3 +17,4 @@
     <% end %>
   </div>
 <% end %>
+
