@@ -22,7 +22,7 @@
         <%= f.input :father_name, label: "Father's Name" %>
         <%= f.input :mother_name, label: "Mother's Name" %>
         <%= f.input :d_o_b, label: "Date Of Birth", start_year: Date.today.year - 30, end_year: Date.today.year %>
-        <%= f.input :birth_cert, label: "Birth Certificate Available?", as: :boolean %>
+        <%= f.input :birth_cert, label: "Birth Certificate Available?", collection: ["Available", "Not Available"] %>
         <%= f.input :contact_one, label: "Contact Number" %>
         <%= f.input :contact_two, label: "Another Contact Number" %>
         <div class="border border-blue-400 rounded-lg">

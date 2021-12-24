@@ -23,6 +23,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name, :book)
+    params.require(:subject).permit(:name, :book, :credits)
   end
 end

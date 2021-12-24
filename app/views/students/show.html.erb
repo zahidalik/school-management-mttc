@@ -18,11 +18,7 @@
       <%= @student.d_o_b %>
     </div>
     <div><u>Birth Certificate:</u> 
-      <% if @student.birth_cert %>
-        Available
-      <% else %>
-        Not Available
-      <% end %>
+      <%= @student.birth_cert %>
     </div>
     <div><u>Contact:</u>
       <%= @student.contact_one %>
