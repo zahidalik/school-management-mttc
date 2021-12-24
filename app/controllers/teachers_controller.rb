@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
 
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.order(:joining_date)
   end
 
   def show
@@ -40,6 +40,6 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.require(:teacher).permit(:full_name, :contact_no, :full_address, :staff_quarter)
+    params.require(:teacher).permit(:full_name, :contact_no, :full_address, :staff_quarter, :joining_date)
   end
 end

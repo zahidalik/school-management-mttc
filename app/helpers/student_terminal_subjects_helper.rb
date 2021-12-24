@@ -1,0 +1,2 @@
+module StudentTerminalSubjectsHelper
+end

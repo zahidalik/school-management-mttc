@@ -12,6 +12,7 @@
         <%= f.input :full_name %>
         <%= f.input :contact_no %>
         <%= f.input :full_address %>
+        <%= f.input :joining_date, start_year: Date.today.year - 25, end_year: Date.today.year + 1 %>
         <%= f.input :staff_quarter, label: "Residing in staff quarters?", collection: ["Yes", "No"], default: "Yes" %>
         <%= f.submit class: "bg-green-600 px-3 py-2 text-lg text-gray-50 rounded-lg hover:bg-green-400" %>
       <% end %>

@@ -8,6 +8,7 @@ class Student < ApplicationRecord
   validates_uniqueness_of :admission_number
 
   has_many :terms
+  has_many :student_terminal_subjects
   
   after_create_commit { broadcast_append_to("students_list")}
 end

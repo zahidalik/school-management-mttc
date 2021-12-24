@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'sessions/new', as: "log_in"
   resources :students
   resources :students, only: [:show] do
-    resources :terms
+    resources :terms do
+      resources :student_terminal_subjects
+    end
   end
   resources :subjects
   resources :teachers

@@ -1,10 +1,23 @@
 class SubjectsController < ApplicationController
   def index
-    @subjects = Subject.all  
+    @subjects = Subject.all.order(:name)
   end
 
   def new
     @subject = Subject.new
+  end
+
+  def edit
+    @subject = Subject.find(params[:id])
+  end
+
+  def update
+    @subject = Subject.find(params[:id])
+    if @subject.update(subject_params)
+      render @subject
+    else
+      render :edit
+    end
   end
 
   def create

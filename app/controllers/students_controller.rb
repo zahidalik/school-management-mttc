@@ -1,13 +1,13 @@
 class StudentsController < ApplicationController
 
   def index
-    @students = Student.all
+    @students = Student.all.order(:admission_date)
     @student = Student.new
   end
   
   def show
     @student = Student.find(params[:id])
-    @student_terms = @student.terms
+    @student_terms = @student.terms.order(:name)
   end
   
   def new

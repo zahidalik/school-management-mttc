@@ -1,0 +1,12 @@
+<%= turbo_frame_tag(dom_id(student_terminal_subject)) do %>
+  <div class="mt-1 px-3 py-2 bg-gray-200">
+    <div class="px-2 py-1 bg-gray-100 text-xl text-gray-800">
+      <%= student_terminal_subject.student.first_name %> ||
+      <%= student_terminal_subject.period_time.strftime("%I:%M %p") %> ||
+      <%= student_terminal_subject.subject.name %> ||
+      <%= student_terminal_subject.subject.credits %> ||
+      <%= student_terminal_subject.teacher.full_name %> ||
+      <%= student_terminal_subject.term.name %>
+    </div>
+  </div>
+<% end %>

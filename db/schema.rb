@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_073252) do
+ActiveRecord::Schema.define(version: 2021_12_24_120529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "student_terminal_subjects", force: :cascade do |t|
+    t.time "period_time"
+    t.bigint "student_id", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "term_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_student_terminal_subjects_on_student_id"
+    t.index ["subject_id"], name: "index_student_terminal_subjects_on_subject_id"
+    t.index ["teacher_id"], name: "index_student_terminal_subjects_on_teacher_id"
+    t.index ["term_id"], name: "index_student_terminal_subjects_on_term_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "first_name"
@@ -51,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_12_24_073252) do
     t.string "staff_quarter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "joining_date"
   end
 
   create_table "terms", force: :cascade do |t|
@@ -63,5 +78,9 @@ ActiveRecord::Schema.define(version: 2021_12_24_073252) do
     t.index ["student_id"], name: "index_terms_on_student_id"
   end
 
+  add_foreign_key "student_terminal_subjects", "students"
+  add_foreign_key "student_terminal_subjects", "subjects"
+  add_foreign_key "student_terminal_subjects", "teachers"
+  add_foreign_key "student_terminal_subjects", "terms"
   add_foreign_key "terms", "students"
 end

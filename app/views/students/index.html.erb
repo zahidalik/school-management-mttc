@@ -1,7 +1,7 @@
 <%= turbo_stream_from "students_list" %>
 <%= turbo_frame_tag "students" do %>
   <div class="mt-8 flex flex-col items-center">
-    <div class="w-4/5 mt-4">
+    <div class="w-4/5 mt-3">
       <div class="">
         <% @students.each do |student| %>
           <%= render "students/student", student: student %>
@@ -11,8 +11,8 @@
   </div>
 <% end %>
 <%= turbo_frame_tag "new_student" do %>
-  <div class="mt-8 flex justify-center items-center">
-    <%= link_to new_student_path, class: "px-3 py-2 bg-green-600 text-gray-50 text-2xl hover:bg-green-400 rounded-lg" do %>
+  <div class="my-8 flex justify-center items-center">
+    <%= link_to new_student_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
       New Student
     <% end %>
   </div>

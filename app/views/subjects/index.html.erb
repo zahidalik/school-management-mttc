@@ -1,7 +1,7 @@
 <%= turbo_stream_from "subjects_list" %>
 <%= turbo_frame_tag "subjects" do %>
-  <div class="mt-10 flex justify-around items-center">
-    <div class="grid grid-cols-5 gap-3">
+  <div class="mt-8 flex flex-col items-center">
+    <div class="w-1/2 mt-3">
       <% @subjects.each do |subject| %>
         <%= render "subjects/subject", subject: subject %>
       <% end %>
@@ -10,9 +10,10 @@
 <% end %>
 
 <%= turbo_frame_tag "new_subject" do %>
-  <div class="mt-8 flex justify-center items-center">
-    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded" do %>
+  <div class="my-8 flex justify-center items-center">
+    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
       New Subject
     <% end %>
   </div>
 <% end %>
+  

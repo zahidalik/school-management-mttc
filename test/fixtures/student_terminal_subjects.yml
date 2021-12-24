@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  period_time: 2021-12-24 10:46:45
+  student: one
+  subject: one
+  teacher: one
+  term: one
+
+two:
+  period_time: 2021-12-24 10:46:45
+  student: two
+  subject: two
+  teacher: two
+  term: two
