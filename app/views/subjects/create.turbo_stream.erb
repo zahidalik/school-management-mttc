@@ -1,1 +1,5 @@
 <%= turbo_stream.append("subjects", @subject) %>
+<%= turbo_stream.update("subjects_count") do %>
+  Total Subjects: <%= Subject.count %> |
+  Total Credits: <%= Subject.sum(:credits) %>
+<% end %>

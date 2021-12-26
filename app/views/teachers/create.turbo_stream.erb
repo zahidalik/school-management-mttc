@@ -1,1 +1,4 @@
 <%= turbo_stream.append("teachers", @teacher) %>
+<%= turbo_stream.update("teachers_count") do %>
+  Total Number of Teachers: <%= Teacher.count %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_24_120529) do
+ActiveRecord::Schema.define(version: 2021_12_26_171852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_12_24_120529) do
     t.bigint "term_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "classroom"
     t.index ["student_id"], name: "index_student_terminal_subjects_on_student_id"
     t.index ["subject_id"], name: "index_student_terminal_subjects_on_subject_id"
     t.index ["teacher_id"], name: "index_student_terminal_subjects_on_teacher_id"

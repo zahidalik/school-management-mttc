@@ -1,17 +1,25 @@
-<%= turbo_stream_from "teachers_list" %>
-<%= turbo_frame_tag "teachers" do %>
-  <div class="mt-8 flex flex-col items-center">
-    <div class="w-1/2 mt-3">
+<div class="w-full h-10 bg-orange-500 text-gray-200 flex justify-center items-center sticky top-14">
+  <%= render "teachers/count" %>
+</div>
+
+
+<div class="mt-4 flex flex-col items-center">
+  <div class="w-1/2 mt-3">
+    <%= turbo_stream_from "teachers_list" %>
+    <%= turbo_frame_tag "teachers" do %>
       <% @teachers.each do |teacher| %>
         <%= render "teachers/teacher", teacher: teacher %>
       <% end %>
-    </div>
+    <% end %>
   </div>
-<% end %>
-<%= turbo_frame_tag "new_teacher" do %>
-  <div class="my-8 flex justify-center items-center">
+</div>
+
+
+<div class="my-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_teacher" do %>
     <%= link_to new_teacher_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
       New Teacher
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
+

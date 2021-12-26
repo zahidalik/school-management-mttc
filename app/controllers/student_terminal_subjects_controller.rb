@@ -23,8 +23,12 @@ class StudentTerminalSubjectsController < ApplicationController
     @term = Term.find(params[:term_id])
     @student_terminal_subject = StudentTerminalSubject.find(params[:id])
 
-    if @student_terminal_subject.update
+    if @student_terminal_subject.update(student_terminal_subjects_params)
       render @student_terminal_subject
+      # respond_to do |format|
+      #   format.turbo_stream
+      #   format.html { redirect_to student_term_student_terminal_subjects_url(@student, @term) }
+      # end
     else
       render :edit
     end
@@ -46,7 +50,7 @@ class StudentTerminalSubjectsController < ApplicationController
     if @student_terminal_subject.save
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to student_term_student_terminal_subjects_url }
+        format.html { redirect_to student_term_student_terminal_subjects_url(@student, @term) }
       end
     else
       render :new
@@ -56,6 +60,6 @@ class StudentTerminalSubjectsController < ApplicationController
   private
 
   def student_terminal_subjects_params
-    params.require(:student_terminal_subject).permit(:period_time, :teacher_id, :subject_id)
+    params.require(:student_terminal_subject).permit(:period_time, :teacher_id, :subject_id, :classroom)
   end
 end

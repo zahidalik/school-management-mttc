@@ -8,4 +8,5 @@ class Subject < ApplicationRecord
   end
 
   after_create_commit { broadcast_append_to("subjects_list")}
+  after_update_commit { broadcast_update_to("subjects_list")}
 end

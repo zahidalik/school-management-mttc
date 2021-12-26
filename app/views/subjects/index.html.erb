@@ -1,19 +1,26 @@
-<%= turbo_stream_from "subjects_list" %>
-<%= turbo_frame_tag "subjects" do %>
-  <div class="mt-8 flex flex-col items-center">
-    <div class="w-1/2 mt-3">
+<div class="w-full h-10 bg-orange-500 text-gray-200  flex justify-center items-center sticky top-14">
+  <%= render "subjects/count" %>
+</div>
+
+
+<div class="mt-4 flex flex-col items-center">
+  <div class="w-1/2 mt-3">
+    <%= turbo_stream_from "subjects_list" %>
+    <%= turbo_frame_tag "subjects" do %>
       <% @subjects.each do |subject| %>
         <%= render "subjects/subject", subject: subject %>
       <% end %>
-    </div>
-  </div>
-<% end %>
-
-<%= turbo_frame_tag "new_subject" do %>
-  <div class="my-8 flex justify-center items-center">
-    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
-      New Subject
     <% end %>
   </div>
-<% end %>
+</div>
+
+
+<div class="my-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_subject" do %>
+    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400"  do %>
+      New Subject
+    <% end %>
+  <% end %>
+</div>
+
   

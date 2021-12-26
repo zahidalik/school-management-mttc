@@ -1,19 +1,29 @@
-<%= turbo_stream_from "student_terminal_subjects_list" %>
-<%= turbo_frame_tag "student_terminal_subjects" do %>
-  <div class="mt-8 flex flex-col items-center">
-    <div class="w-4/5 mt-4">
-      <div class="">
-        <% @student_terminal_subjects.each do |student_terminal_subject| %>
-          <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject %>
-        <% end %>
-      </div>
-    </div>
+<div class="mt-8 text-2xl font-extralight flex flex justify-center items-center">
+  <div>
+    <%= @student.first_name %>
+    <%= @student.second_name %>
+    <%= @student.last_name %>
+    -
   </div>
-<% end %>
-<%= turbo_frame_tag "new_student_terminal_subject" do %>
-  <div class="mt-8 flex justify-center items-center">
+  <div>
+    -
+    <%= @term.name %>
+  </div>
+</div>
+
+<div class="mt-4 flex flex-col justify-center items-center">    
+  <%= turbo_stream_from "student_terminal_subjects_list" %>
+  <%= turbo_frame_tag "student_terminal_subjects" do %>
+    <% @student_terminal_subjects.each do |student_terminal_subject| %>
+      <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject %>
+    <% end %>
+  <% end %>  
+</div>
+
+<div class="mt-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_student_terminal_subject" do %>
     <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 text-2xl hover:bg-green-400 rounded-lg" do %>
       Add New Terminal Subject
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

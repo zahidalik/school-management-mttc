@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "subjects_count" do %>
+  Total Subjects: <%= Subject.count %> |
+  Total Credits: <%= Subject.sum(:credits) %>
+<% end %>

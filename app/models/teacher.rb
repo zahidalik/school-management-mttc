@@ -8,4 +8,5 @@ class Teacher < ApplicationRecord
   has_many :student_terminal_subjects
 
   after_create_commit { broadcast_append_to("teachers_list")}
+  after_update_commit { broadcast_update_to("teachers_list")}
 end
