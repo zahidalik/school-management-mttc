@@ -1,0 +1,28 @@
+<div class="mt-4 flex flex-col justify-center items-center">
+  <table class="table-auto border-2 border-gray-400">
+    <thead>
+      <tr>
+        <th class="border-2 border-gray-400 px-2 py1">Subject</th>
+        <th class="border-2 border-gray-400 px-2 py1">Credits</th>
+        <th class="border-2 border-gray-400 px-2 py1">Teacher</th>
+        <th class="border-2 border-gray-400 px-2 py1">Classroom</th>
+        <th class="border-2 border-gray-400 px-2 py1">Days</th>
+        <th class="border-2 border-gray-400 px-2 py1">Time</th>
+        <th class="border-2 border-gray-400 px-2 py1">Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student_terminal_subjects.each do |student_terminal_subject| %>
+        <tr>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.subject.name %></td> 
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.subject.credits %></td>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.teacher.full_name %></td>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.classroom.name %></td>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.start_day %> to <%= student_terminal_subject.end_day %></td>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.period_time.strftime("%I:%M") %></td>
+          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.remarks %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

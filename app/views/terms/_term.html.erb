@@ -1,5 +1,12 @@
 <%= turbo_frame_tag(dom_id(term)) do %>
   <div class="bg-sky-500 px-2 py-1 text-lg text-gray-50 rounded-lg">
-    <%= link_to term.name, student_term_student_terminal_subjects_url(@student, term), data: {"turbo_frame": "_top"} %>
+    <%= link_to student_term_student_terminal_subjects_url(@student, term), data: {"turbo_frame": "_top"} do %>
+      <%= term.name %>
+      <div class="bg-sky-700 text-sm">
+        <%= term.start_date.strftime("%d %b %Y") %>
+        to
+        <%= term.end_date.strftime("%d %b %Y") %>
+      </div>
+    <% end %>
   </div>
 <% end %>

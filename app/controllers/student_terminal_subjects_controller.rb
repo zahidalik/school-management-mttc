@@ -3,7 +3,7 @@ class StudentTerminalSubjectsController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:term_id])
-    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(:period_time)
+    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(:start_day)
   end
 
   def show
@@ -60,6 +60,6 @@ class StudentTerminalSubjectsController < ApplicationController
   private
 
   def student_terminal_subjects_params
-    params.require(:student_terminal_subject).permit(:period_time, :teacher_id, :subject_id, :classroom)
+    params.require(:student_terminal_subject).permit(:teacher_id, :subject_id, :classroom_id, :period_time, :start_day, :end_day, :remarks)
   end
 end

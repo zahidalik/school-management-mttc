@@ -1,0 +1,15 @@
+<%= turbo_frame_tag(dom_id(classroom)) do %>
+  <div class="mt-1 px-3 py-2 bg-lime-400">
+    <div class="px-2 py-1 bg-lime-600 text-xl text-gray-800">
+      <%= classroom.name %>
+    </div>
+    <div class="mt-3">
+      <%= link_to classroom_path(classroom), data: {"turbo_frame": "_top"}, class: "mr-1 px-2 py-1 bg-lime-600 text-sm text-gray-800" do %>
+        Show
+      <% end %>
+      <%= link_to edit_classroom_path(classroom), class: "px-2 py-1 bg-lime-600 text-sm text-gray-800" do %>
+        Edit
+      <% end %>
+    </div>
+  </div>
+<% end %>

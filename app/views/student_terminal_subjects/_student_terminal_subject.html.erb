@@ -1,8 +1,12 @@
 <%= turbo_frame_tag(dom_id(student_terminal_subject)) do %>
-  <div><%= student_terminal_subject.subject.name %></div>
-  <div><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></div>
-  <div><%= student_terminal_subject.subject.credits %></div>
-  <div><%= student_terminal_subject.teacher.full_name %></div>
-  <div><%= student_terminal_subject.classroom %></div>
-  <div><u><%= link_to "Edit", edit_student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) %></u></div>
+  <div class="flex justify-center items-center space-x-4">
+    <div><%= student_terminal_subject.subject.name %></div>
+    <div><%= student_terminal_subject.subject.credits %></div>
+    <div><%= student_terminal_subject.teacher.full_name %></div>
+    <div><%= student_terminal_subject.classroom.name %></div>
+    <div><%= student_terminal_subject.start_day %> to <%= student_terminal_subject.end_day %></div>
+    <div><%= student_terminal_subject.period_time.strftime("%I:%M") %></div>
+    <div class="bg-green-200"><%= student_terminal_subject.remarks %></div>
+    <div><u><%= link_to "Edit", edit_student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) %></u></div>
+  </div>
 <% end %>

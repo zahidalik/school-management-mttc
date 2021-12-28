@@ -9,10 +9,6 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @student_terms = @student.terms.order(:name)
   end
-  
-  def new
-    @student = Student.new
-  end
 
   def edit
     @student = Student.find(params[:id])
@@ -25,6 +21,10 @@ class StudentsController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def new
+    @student = Student.new
   end
 
   def create

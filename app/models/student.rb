@@ -12,4 +12,21 @@ class Student < ApplicationRecord
   
   after_create_commit { broadcast_append_to("students_list")}
   after_update_commit { broadcast_update_to("students_list")}
+
+  def total_credits(student)
+    credits = 0
+    student.student_terminal_subjects.each do |s|
+      credits += s.subject.credits
+    end
+    credits
+  end
+
+  def credits_in_current_term(student, term)
+    credits = 0
+    student_terminal_subjects = student.student_terminal_subjects.where(term_id: term.id)
+    student.student_terminal_subjects.each do |s|
+      credits += s.subject.credits
+    end
+    credits
+  end
 end

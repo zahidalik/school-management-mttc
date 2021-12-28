@@ -1,1 +1,4 @@
 <%= turbo_stream.append("student_terminal_subjects", @student_terminal_subject) %>
+<%= turbo_stream.update("student_terminal_subject_credits_count") do %>
+  <div>Total Credits taken by <%= @student.first_name %> in <%= @term.name %>: <u><%= @student.credits_in_current_term(@student, @term) %></u></div>
+<% end %>

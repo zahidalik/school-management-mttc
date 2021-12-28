@@ -47,8 +47,8 @@
 </div>
 
 <%= turbo_frame_tag "terms" do %>
-  <div class="flex justify-center">
-    <div class="mt-16 grid grid-cols-12 gap-6">
+  <div class="flex justify-center items-center">
+    <div class="mt-16 grid grid-cols-6 gap-3">
       <% if @student.terms.any? %>
         <% @student_terms.each do |term| %>
           <%= render "terms/term", term: term %>
@@ -57,10 +57,15 @@
     </div>
   </div>
 <% end %>
+
 <div class="mt-8 flex justify-center items-center">
   <%= turbo_frame_tag "new_term" do %>
     <%= link_to new_student_term_path(@student), class: "px-4 py-2 bg-green-600 text-lg text-gray-50 drop-shadow-2xl hover:bg-green-400" do %>
       Add New Term
     <% end %>
   <% end %>
+</div>
+
+<div class="mt-8 bg-gray-100 flex justify-around items-center text-xl font-light">
+  <div>Total Credits taken by <%= @student.first_name %> up to now: <u><%= @student.total_credits(@student) %></u></div>
 </div>

@@ -1,15 +1,21 @@
-<div class="mt-8 text-2xl font-extralight flex flex justify-center items-center">
+<div class="w-full h-10 bg-orange-500 text-gray-200 flex justify-center items-center sticky top-14">
+  <%= render "student_terminal_subjects/credits_count", student: @student, term: @term %>
+</div>
+
+<div class="mt-8 text-3xl font-extralight flex flex justify-center items-center">
   <div>
     <%= @student.first_name %>
     <%= @student.second_name %>
     <%= @student.last_name %>
-    -
   </div>
-  <div>
-    -
+  <div class="ml-2">
     <%= @term.name %>
   </div>
+  <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
+    Back
+  <% end %>
 </div>
+
 
 <div class="mt-4 flex flex-col justify-center items-center">    
   <%= turbo_stream_from "student_terminal_subjects_list" %>
@@ -27,3 +33,25 @@
     <% end %>
   <% end %>
 </div>
+
+
+<% if @student_terminal_subjects.any? %>
+  <div class="py-8 mt-8 bg-gray-100">
+    <div class="text-3xl font-extralight flex justify-center items-center">
+      Time table for: <%= @student.first_name %>
+      <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
+        Back
+      <% end %>
+    </div>
+    <%= render "student_terminal_subjects/time_table" %>
+  </div>
+<% else %>
+  <div class="py-8 mt-8 bg-gray-100">
+    <div class="text-3xl font-extralight flex justify-center items-center">
+      No time table for: <%= @student.first_name %>  
+      <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
+        Back
+      <% end %>
+    </div>
+  </div>
+<% end %>
