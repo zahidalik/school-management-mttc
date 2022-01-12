@@ -76,3 +76,6 @@ end
 
 # Custom gems
 gem 'simple_form'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'

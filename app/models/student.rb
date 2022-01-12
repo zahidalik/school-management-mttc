@@ -10,7 +10,7 @@ class Student < ApplicationRecord
   has_many :terms
   has_many :student_terminal_subjects
   
-  after_create_commit { broadcast_append_to("students_list")}
+  after_create_commit { broadcast_prepend_to("students_list")}
   after_update_commit { broadcast_update_to("students_list")}
 
   def total_credits(student)

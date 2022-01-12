@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Classrooms") do |sheet|
+  @classrooms.each do |classroom|
+    sheet.add_row ["Name", classroom.name]
+    class_without_dup = classroom.student_terminal_subjects.uniq do |class_subject|
+      class_subject.subject.name
+    end
+    sheet.add_row ["Subject", "Credits", "Teacher", "Term", "Start Date", "End Date", "Time", "From", "To", "Remarks"]
+    class_without_dup.each do |classroom_subject|
+      sheet.add_row [classroom_subject.subject.name, classroom_subject.subject.credits, classroom_subject.teacher.full_name, classroom_subject.term.name, classroom_subject.term.start_date.inspect, classroom_subject.term.end_date.inspect, classroom_subject.period_time.strftime("%I:%M"), classroom_subject.start_day, classroom_subject.end_day, classroom_subject.remarks ]
+    end
+  end
+end

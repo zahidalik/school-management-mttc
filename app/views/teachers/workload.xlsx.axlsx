@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: @teacher.full_name) do |sheet|
+  sheet.add_row ["Teacher:", @teacher.full_name]
+  sheet.add_row ["Subject", "Book", "Credits", "Term", "Start Date", "End Date", "Time", "From", "To", "Classroom", "Remarks"]
+  @teacher_terminal_subjects_without_duplication.each do |classroom_subject|
+    sheet.add_row [classroom_subject.subject.name, classroom_subject.subject.book, classroom_subject.subject.credits, classroom_subject.term.name, classroom_subject.term.start_date.inspect, classroom_subject.term.end_date.inspect, classroom_subject.period_time.strftime("%I:%M"), classroom_subject.start_day, classroom_subject.end_day, classroom_subject.classroom.name, classroom_subject.remarks]
+  end
+end

@@ -1,10 +1,20 @@
 class ClassroomsController < ApplicationController
   def index
-    @classrooms = Classroom.all.order(:name)
+    @classrooms = Classroom.all.order(name: :desc)
+  end
+
+  def excel_index
+    @classrooms = Classroom.all.order(name: :desc)
+    render xlsx: "excel_index", filename: "Classrooms", disposition: 'inline', template: "classrooms/excel_index"
   end
 
   def show
     @classroom = Classroom.find(params[:id])
+    @classroom_terminal_subjects_without_duplication = @classroom.student_terminal_subjects.uniq do |class_subject|
+                                                        class_subject.subject.name
+                                                        #  class_subject.term.start_date
+                                                        #class_subject.period_time
+                                                       end
   end
 
   def edit

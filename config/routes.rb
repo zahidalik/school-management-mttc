@@ -5,12 +5,25 @@ Rails.application.routes.draw do
   resources :students
   resources :students, only: [:show] do
     resources :terms do
-      resources :student_terminal_subjects
+      resources :student_terminal_subjects do
+        collection do
+          get "time_table", to: "student_terminal_subjects#time_table"
+        end
+      end
     end
   end
+
   resources :subjects
-  resources :teachers
-  resources :classrooms
+  resources :teachers do
+    member do
+      get "workload", to: "teachers#workload"
+    end
+  end
+  resources :classrooms do
+    collection do
+      get "excel-sheet", to: "classrooms#excel_index"
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

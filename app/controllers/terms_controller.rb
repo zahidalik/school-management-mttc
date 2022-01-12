@@ -1,4 +1,18 @@
 class TermsController < ApplicationController
+  def edit
+    @student = Student.find(params[:student_id])
+    @term = Term.find(params[:id]) 
+  end
+
+  def update
+    @student = Student.find(params[:student_id])
+    @term = Term.find(params[:id])
+    if @term.update(term_params)
+      render @term
+    else
+      render :edit
+    end
+  end
 
   def new
     @student = Student.find(params[:student_id])

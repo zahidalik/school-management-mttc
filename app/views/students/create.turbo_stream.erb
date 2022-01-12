@@ -1,4 +1,4 @@
-<%= turbo_stream.append("students", @student) %>
+<%= turbo_stream.prepend("students", @student) %>
 <%= turbo_stream.update("students_count") do %>
   Total Number of Students: <%= Student.count %>
 <% end %>
