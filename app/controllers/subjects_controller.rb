@@ -3,6 +3,11 @@ class SubjectsController < ApplicationController
     @subjects = Subject.all.order(:name)
   end
 
+  def subjects_excel_sheet
+    @subjects = Subject.all.order(name: :asc)
+    render xlsx: "subjects_excel_sheet", filename: "Subjects", disposition: 'inline', template: "subjects/subjects_excel_sheet"
+  end
+
   def new
     @subject = Subject.new
   end

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :subjects
+  resources :subjects do
+    collection do
+      get "subjects-excel", to: "subjects#subjects_excel_sheet"
+    end
+  end
   resources :teachers do
     member do
       get "workload", to: "teachers#workload"

@@ -2,6 +2,19 @@
   <%= render "subjects/count" %>
 </div>
 
+<div class="my-4 flex justify-center items-center">
+  <%= link_to subjects_excel_subjects_path(@subjects, format: :xlsx), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
+    All subjects Excel sheet
+  <% end %>
+</div>
+
+<div class="my-4 flex justify-center items-center">
+  <%= turbo_frame_tag "new_subject" do %>
+    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400"  do %>
+      New Subject
+    <% end %>
+  <% end %>
+</div>
 
 <div class="mt-4 flex flex-col items-center">
   <div class="w-1/2 mt-3">
@@ -12,13 +25,4 @@
       <% end %>
     <% end %>
   </div>
-</div>
-
-
-<div class="my-8 flex justify-center items-center">
-  <%= turbo_frame_tag "new_subject" do %>
-    <%= link_to new_subject_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400"  do %>
-      New Subject
-    <% end %>
-  <% end %>
 </div>
