@@ -2,6 +2,10 @@
   <%= render "students/count" %>
 </div>
 
+<div class="mt-8 flex flex-col justify-center items-center">
+    <%= render "students/search_form" %>
+</div>
+
 <div class="my-8 flex justify-center items-center">
   <%= turbo_frame_tag "new_student" do %>
     <%= link_to new_student_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-xl rounded hover:bg-green-400" do %>
@@ -20,5 +24,3 @@
     <% end %>
   </div>
 </div>
-
-

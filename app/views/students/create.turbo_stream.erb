@@ -2,3 +2,12 @@
 <%= turbo_stream.update("students_count") do %>
   Total Number of Students: <%= Student.count %>
 <% end %>
+<%= turbo_stream.replace("new_student") do %>
+  <div class="mt-4 flex flex-col items-center">
+    <div class="">
+      <%= link_to students_url, class: "px-2 py-1 text-lg text-gray-50 bg-blue-600 shadow-xl rounded" do %>
+        "Done. Click to refresh the page!"
+      <% end %>
+    </div>
+  </div>
+<% end %>

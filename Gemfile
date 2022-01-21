@@ -79,3 +79,6 @@ gem 'simple_form'
 
 gem 'caxlsx'
 gem 'caxlsx_rails'
+# for generating pdf
+gem 'prawn'
+gem 'prawn-table', '~> 0.2.2'

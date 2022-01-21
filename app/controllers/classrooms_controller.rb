@@ -15,7 +15,23 @@ class ClassroomsController < ApplicationController
                                                         #  class_subject.term.start_date
                                                         #class_subject.period_time
                                                        end
-  end
+  
+    @classroom_subjects = @classroom.student_terminal_subjects.all.order(subject_id: :desc)
+   end
+
+  # def classroom_timetables
+  #   @classroom = Classroom.find(params[:id])
+  #   @classroom_terminal_subjects_without_duplication = @classroom.student_terminal_subjects.uniq do |class_subject|
+  #     class_subject.subject.name
+  #     #  class_subject.term.start_date
+  #     #class_subject.period_time
+  #    end
+  # end
+
+  # def classroom_students
+  #   @classroom = Classroom.find(params[:id])
+  #   @classroom_subjects = @classroom.student_terminal_subjects
+  # end
 
   def edit
     @classroom = Classroom.find(params[:id])

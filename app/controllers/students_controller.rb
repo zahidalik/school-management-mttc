@@ -1,13 +1,41 @@
 class StudentsController < ApplicationController
 
   def index
-    @students = Student.all.order(:admission_date)
+    @students = Student.all.order(first_name: :asc)
     @student = Student.new
   end
-  
+
+  def search
+    if params.dig(:first_name_search).present?
+      @students = Student.where('first_name ILIKE ?', "%#{params[:first_name_search]}%").order(first_name: :asc)
+    else
+      @students = []
+    end
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("search_results",
+          partial: "students/search_results",
+          locals: { students: @students })
+        ]
+      end
+    end
+  end
+
   def show
     @student = Student.find(params[:id])
-    @student_terms = @student.terms.order(:name)
+    @student_terms = @student.terms.order(name: :desc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = StudentPdf.new(@student)
+        send_data pdf.render,
+          filename: "#{@student.first_name}.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
   end
 
   def edit
@@ -22,7 +50,7 @@ class StudentsController < ApplicationController
       render :edit
     end
   end
-  
+
   def new
     @student = Student.new
   end

@@ -1,0 +1,11 @@
+<span class="text-gray-700 text-blue-700 font-bold">
+  <% unless students.empty? %>
+    results found:  <%= students.count %>
+  <% end %>
+</span>
+<% students.each do |student| %>
+  <br>
+  <%= link_to student, class: "text-gray-700 px-2 font-bold" do %>
+    <%= highlight(student.first_name + " " + student.second_name + " " + student.last_name, params.dig(:first_name_search)) %>
+  <% end %>
+<% end %>
