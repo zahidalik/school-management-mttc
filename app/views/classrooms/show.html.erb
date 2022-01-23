@@ -1,7 +1,29 @@
-<div class="my-6 text-3xl font-light text-gray-700 flex justify-center items-center">
+<div class="mt-8 text-3xl font-light text-gray-700 flex justify-center items-center">
   <%= @classroom.name %> Classroom
 </div>
+<div class="mt-2 flex flex-col justify-center items-center border-t-2 border-gray-500">
+  <span class="pt-4 text-gray-700">All the starting dates will appear here</span>
+  <div class="mt-2 flex flex-row justify-center items-center">
+    <% @classroom_for_starting_dates.each do |s| %>
+      <div class="bg-green-600 text-sm px-2 py-1 text-gray-50">
+        <%= s.term.start_date.inspect %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="mb-12 flex flex-col justify-center items-center">
+  <div class="py-2 text-2xl font-light">TIMETABLES</div>
+  <div class="pb-2 text-sm text-gray-500 underline italic">
+    To search a timetable, please enter the starting date of a term.
+  </div>
+  <%= render "classrooms/search_form_for_timetable" %>
+</div>
 
-<%= render "classrooms/classroom_timetables" %>
-
-<%= render "classrooms/classroom_students" %>
+<div class="mt-2 flex flex-col justify-center items-center border-t-2 border-gray-500">
+  <div class="py-4 text-2xl font-light">ATTENDANCE LIST</div>
+  <div class="pb-4 text-sm text-gray-500 underline italic">
+    This is a mulitpurpose search. By using only subject name or starting date of the term, or both,
+    the results will vary. Just choose as per your need.
+  </div>
+  <%= render "classrooms/search_form_for_attendance" %>
+</div>

@@ -1,0 +1,8 @@
+<%= form_with url: search_for_timetable_classroom_path(@classroom), method: :post do |form| %>
+  <%= form.label :start_date_search, "Starting Date:", class: "pl-2 text-gray-700"%>
+  <%= form.date_field :start_date_search, value: params[:start_date_search],
+      class: "px-2 py-1 text-gray-600 border border-gray-400 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400",
+      oninput: "this.form.requestSubmit()" %>  
+<% end %>
+
+<div class="mt-4" id="search_results_for_timetable"></div>

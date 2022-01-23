@@ -1,24 +1,26 @@
-<div class="mt-4 flex flex-col items-center">
-  <div class="w-1/2 mt-3">
-    <%= turbo_stream_from "classrooms_list" %>
-    <%= turbo_frame_tag "classrooms" do %>
-      <% @classrooms.each do |classroom| %>
-        <%= render "classrooms/classroom", classroom: classroom %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class="my-4 flex justify-center items-center">
-  <%= link_to excel_sheet_classrooms_path(format: :xlsx), class: "px-3 py-2 bg-blue-700 text-gray-50 font-light drop-shadow-2xl rounded hover:bg-blue-400" do %>
-      Excel Sheet
-    <% end %>
-</div>
-
-<div class="my-4 flex justify-center items-center">
+<div class="my-8 flex justify-center items-center">
   <%= turbo_frame_tag "new_classroom" do %>
-    <%= link_to new_classroom_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
+    <%= link_to new_classroom_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-2xl rounded hover:bg-green-400" do %>
       New Classroom
     <% end %>
   <% end %>
 </div>
+<div class="my-4 flex justify-center items-center">
+  <%= link_to excel_sheet_classrooms_path(format: :xlsx), class: "px-3 py-2 bg-blue-700 text-gray-50 font-light shadow-2xl rounded hover:bg-blue-400" do %>
+    Excel Sheet for all timetables in all classrooms
+  <% end %>
+</div>
+<div class="mt-4 flex flex-col items-center">
+  <div class="w-10/12 mt-3">
+    <%= turbo_stream_from "classrooms_list" %>
+    <%= turbo_frame_tag "classrooms" do %>
+      <div class="flex flex-row justify-center items-center space-x-2"> 
+      </div>
+      <% @classrooms.each do |classroom| %>
+        <%= render "classrooms/classroom", classroom: classroom %>
+      <% end %>    
+    <% end %>
+  </div>
+</div>
+
+

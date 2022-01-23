@@ -29,13 +29,11 @@ Rails.application.routes.draw do
   end
   resources :classrooms do
     member do
-      get "classroom-timetables", to: "classrooms#classroom_timetables"
-      get "classroom-students", to: "classrooms#classroom_students"
+      post :search_for_attendance
+      post :search_for_timetable
     end
     collection do
       get "excel-sheet", to: "classrooms#excel_index"
-      get "classroom-timetables", to: "classrooms#classroom_timetables"
-      get "classroom-students", to: "classrooms#classroom_students"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
