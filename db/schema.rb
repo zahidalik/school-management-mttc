@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_080115) do
+ActiveRecord::Schema.define(version: 2022_01_27_131557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2021_12_28_080115) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "marks_reports", force: :cascade do |t|
+    t.float "written"
+    t.float "oral"
+    t.float "total"
+    t.string "remarks"
+    t.bigint "student_terminal_subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_terminal_subject_id"], name: "index_marks_reports_on_student_terminal_subject_id"
   end
 
   create_table "student_terminal_subjects", force: :cascade do |t|
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_080115) do
     t.index ["student_id"], name: "index_terms_on_student_id"
   end
 
+  add_foreign_key "marks_reports", "student_terminal_subjects"
   add_foreign_key "student_terminal_subjects", "classrooms"
   add_foreign_key "student_terminal_subjects", "students"
   add_foreign_key "student_terminal_subjects", "subjects"

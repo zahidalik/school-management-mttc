@@ -12,6 +12,17 @@ class TeachersController < ApplicationController
       class_subject.period_time
       # class_subject.classroom.name
     end
+    @teacher_name = @teacher.full_name
+    @qrcode = RQRCode::QRCode.new(@teacher_name)
+
+    # NOTE: showing with default options specified explicitly
+    @svg = @qrcode.as_svg(
+      color: "444",
+      shape_rendering: "crispEdges",
+      module_size: 1.5,
+      standalone: true,
+      use_path: true
+    )
   end
   
   def workload

@@ -6,7 +6,9 @@
   <%= form.label :start_date_search, "Starting Date:", class: "pl-2 text-gray-700"%>
   <%= form.date_field :start_date_search, value: params[:start_date_search],
       class: "px-2 py-1 text-gray-600 border border-gray-400 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"%>
-  <%= form.submit "Search", class: "bg-blue-700 px-2 py-1 text-gray-50 rounded hover:bg-blue-500" %>
+  <%= form.button class: "bg-blue-700 px-2 py-1 text-gray-50 rounded hover:bg-blue-500" do %>
+    <i class='fas fa-search'></i>
+  <% end %>
 <% end %>
 
 <div class="mt-4" id="search_results_for_attendance"></div>

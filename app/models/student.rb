@@ -23,8 +23,8 @@ class Student < ApplicationRecord
 
   def credits_in_current_term(student, term)
     credits = 0
-    student_terminal_subjects = student.student_terminal_subjects.where(term_id: term.id)
-    student.student_terminal_subjects.each do |s|
+    student_terminal_subjects_in_current_term = student.student_terminal_subjects.where(term_id: term.id)
+    student_terminal_subjects_in_current_term.each do |s|
       credits += s.subject.credits
     end
     credits

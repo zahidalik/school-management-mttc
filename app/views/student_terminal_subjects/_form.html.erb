@@ -1,16 +1,40 @@
-<% provide(:button_name, "Add subject") %>
+<%= form_for([student, term, student_terminal_subject], html: {class: "flex flex-col space-y-2 justify-center items-center" }) do |f| %>
+  <%# <%= f.error_notification message: f.object.errors[:base].to_sentence %>
+  <% if student_terminal_subject.errors.any? %>
+    <div>Errors:</div>
+    <ul>
+      <% student_terminal_subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :period_time, class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.time_field :period_time, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
 
-<%= simple_form_for([student, term, student_terminal_subject], defaults: { label_html: { class: "mr-1 text-sm text-gray-700 font-semibold" }, input_html: { class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded-lg bg-orange-300" } },html: { class: "flex flex-col space-y-3 justify-center items-center" }) do |f| %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence %>
-  <%= f.input :period_time %>
-  <%= f.input :start_day, label: "From", collection: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"] %>
-  <%= f.input :end_day, label: "To", collection: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]  %>
-  <%= f.input :classroom_id, collection: Classroom.all %>
-  <%= f.input :subject_id, collection: Subject.all %>
-  <%= f.input :teacher_id, collection: Teacher.all %>
-  <%= f.input :remarks %>
+  <%= f.label :start_day, "From:", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.select :start_day, ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"], {}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.label :end_day, "To", class: "mr-1 text-sm text-gray-700 font-semibold"%>
+  <%= f.select :end_day, ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"], {include_blank: " "}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200"  %>
+
+  <%= f.label :classroom_id, "Classroom", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.collection_select :classroom_id, Classroom.order(:name), :id, :name, {include_blank: " "}, {class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200"} %>
+  <%# <%= f.select :classroom_id, Classroom.all %>
+
+  <%= f.label :subject_id, "Subject", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.collection_select :subject_id, Subject.order(:name), :id, :name, {include_blank: ""}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+  <%# <%= f.input :subject_id, collection: Subject.all %>
+
+  <%= f.label :teacher_id, "Teacher", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.collection_select :teacher_id, Teacher.order(:full_name), :id, :full_name, {include_blank: ""}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+  <%# <%= f.input :teacher_id, collection: Teacher.all %>
+
+  <%= f.label :remarks, class: "mr-1 text-sm text-gray-700 font-semibold"%>
+  <%= f.text_field :remarks, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
   <%= turbo_frame_tag "subject_flash" do %>
     <div></div>
   <% end %>
+
   <%= f.submit yield(:button_name), class: "bg-green-600 px-3 py-1 text-sm text-gray-50 rounded-lg hover:bg-green-400" %>
 <% end %>

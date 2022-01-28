@@ -1,8 +1,21 @@
-<%= simple_form_for([student, term], defaults: { label_html: { class: "mr-2 text-gray-700 font-semibold" }, input_html: { class: "mr-2 px-1 py-1 text-gray-700 rounded-lg bg-orange-300" } },html: { class: "flex flex-col space-x-1 space-y-1 justify-center items-center" }) do |f| %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence %>
-  <%= f.input :name, label: "Term", 
-    collection: ["Start", "Term 1", "Term 2", "Term 3", "Term 4", "Term 5", "Term 6", "Term 7", "Term 8", "Term 9", "Term 10", "Term 11", "Term 12"] %>
-  <%= f.input :start_date, start_year: Date.today.year - 20, end_year: Date.today.year + 1 %>
-  <%= f.input :end_date, start_year: Date.today.year - 20, end_year: Date.today.year + 1 %>       
-  <%= f.submit class: "bg-green-600 px-3 py-2 text-sm text-gray-50 rounded-lg hover:bg-green-400" %>
+<%= form_for([student, term], html: { class: "flex space-x-2 justify-center items-center" }) do |f| %>
+
+  <% if term.errors.any? %>
+    <ul class="bg-red-200 px-2 py-1 border border-red-400 text-red-400 list-disc list-inside">
+      <% term.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :name, "Term:", class: "text-gray-700 font-semibold" %>
+  <%= f.select :name, ["Term 1", "Term 2", "Term 3", "Term 4", "Term 5", "Term 6", "Term 7", "Term 8", "Term 9", "Term 10", "Term 11", "Term 12"], {include_blank: " "}, { class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200" } %>
+  
+  <%= f.label :start_date, "Starting Date:", class: "text-gray-700 font-semibold" %>
+  <%= f.date_field :start_date, class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200"%>
+  
+  <%= f.label :end_date, "Ending Date:", class: "text-gray-700 font-semibold" %>   
+  <%= f.date_field :end_date, class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+  
+  <%= f.submit "Add Term", class: "bg-green-600 px-3 py-2 text-sm text-gray-50 rounded-lg hover:bg-green-400" %>
 <% end %>

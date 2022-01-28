@@ -16,12 +16,11 @@
   <% end %>
 </div>
 
-
 <div class="mt-4 flex flex-col justify-center items-center">    
   <%= turbo_stream_from "student_terminal_subjects_list" %>
   <%= turbo_frame_tag "student_terminal_subjects" do %>
     <% @student_terminal_subjects.each do |student_terminal_subject| %>
-      <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject %>
+      <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject, marks_id: @for_new_marks_report_dom %>
     <% end %>
   <% end %>  
 </div>

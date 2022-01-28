@@ -1,0 +1,23 @@
+<%= turbo_frame_tag(dom_id(@marks_report)) do %>
+  <%= form_for([@student_terminal_subject, @marks_report], url: student_terminal_subject_marks_report_url, method: :patch, html: { class: "flex flex-col justify-center items-center space-y-1" }) do |f| %>
+
+    <% if @marks_report.errors.any? %>
+      <ul class="bg-red-200 px-2 py-1 border border-red-400 text-red-400 list-disc list-inside">
+        <% @marks_report.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.label :written, "Written", class: "text-gray-700 text-sm" %>
+    <%= f.number_field :written, step: :any, class: "px-1 text-gray-700 text-sm rounded border border-gray-300 bg-gray-200" %>
+    
+    <%= f.label :oral, "Oral", class: "text-gray-700 text-sm" %>
+    <%= f.number_field :oral, step: :any, class: "px-1 text-gray-700 text-sm rounded border border-gray-300 bg-gray-200"%>
+    
+    <%= f.label :remarks, class: "text-gray-700 text-sm" %>   
+    <%= f.text_field :remarks, class: "px-1 text-gray-700 text-sm rounded border border-gray-300 bg-gray-200" %>
+    
+    <%= f.submit "Edit", class: "bg-green-700 px-1 text-sm text-gray-50 rounded hover:bg-green-500" %>
+  <% end %>
+<% end %>

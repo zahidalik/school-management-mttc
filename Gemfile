@@ -82,3 +82,5 @@ gem 'caxlsx_rails'
 # for generating pdf
 gem 'prawn'
 gem 'prawn-table', '~> 0.2.2'
+# for qr code
+gem "rqrcode", "~> 2.0"

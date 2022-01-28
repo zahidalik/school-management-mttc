@@ -2,24 +2,24 @@
   <div class="h-14 flex justify-around items-center">
     <div class="flex items-center space-x-7">
       <%= link_to root_path, class: "text-2xl text-white font-semibold" do %>
-        MTTC SMS
+        <%= image_tag "MTTC-logos_transparent.png", class: "h-32 w-auto" %>
       <% end %>
       <%= link_to teachers_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
-        Teachers
+        <i class="fas fa-chalkboard-teacher"></i> Teachers
       <% end %>
       <%= link_to students_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
-        Students
+        <i class="fas fa-user-graduate"></i> Students
       <% end %>
       <%= link_to subjects_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
-        Subjects
+        <i class="fa-solid fa-book-open"></i> Subjects
       <% end %>
       <%= link_to classrooms_path, class: "py-2 text-sm text-white font-bold border-b-0 hover:border-b-2 hover:border-white" do %>
-        Classrooms
+        <i class="fas fa-chalkboard"></i> Classrooms
       <% end %>
     </div>
     <div class="flex">
       <%= link_to log_in_path, class: "bg-green-500 text-sm px-3 py-2 rounded-lg text-white font-bold hover:bg-green-400" do %>
-        Log in
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Log in
       <% end %>
     </div>
   </div>

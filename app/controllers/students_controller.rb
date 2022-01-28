@@ -26,6 +26,7 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @student_terms = @student.terms.order(name: :desc)
+    @all_subjects = Subject.all.order(name: :asc)
     respond_to do |format|
       format.html
       format.pdf do
@@ -36,6 +37,31 @@ class StudentsController < ApplicationController
           disposition: 'inline'
       end
     end
+    # for producing qr code for the name of each student
+    @student_name = @student.first_name + " " + @student.second_name + " " + @student.last_name
+    @qrcode = RQRCode::QRCode.new(@student_name)
+
+    # NOTE: showing with default options specified explicitly
+    @svg = @qrcode.as_svg(
+      color: "444",
+      shape_rendering: "crispEdges",
+      module_size: 1.5,
+      standalone: true,
+      use_path: true
+    )
+    # @png = @qrcode.as_png(
+    #   bit_depth: 1,
+    #   border_modules: 4,
+    #   color_mode: ChunkyPNG::COLOR_GRAYSCALE,
+    #   color: "black",
+    #   file: nil,
+    #   fill: "white",
+    #   module_px_size: 6,
+    #   resize_exactly_to: false,
+    #   resize_gte_to: false,
+    #   size: 120
+    # )
+    # IO.binwrite("/tmp/student.png", @png.to_s)
   end
 
   def edit

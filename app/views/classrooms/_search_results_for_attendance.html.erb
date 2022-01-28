@@ -11,7 +11,9 @@
     <% classroom_attendance_per_subject.each do |subject| %>
       <tbody>
         <tr>
-          <td class="p-1 border-2 border-gray-300"><%= subject.student.first_name + " " + subject.student.second_name + " " + subject.student.last_name %>
+          <td class="p-1 border-2 border-gray-300"><%= link_to student_path(subject.student), class: "text-blue-700 underline" do %>
+                                                      <span><i class="fas fa-user"></i> <%= (subject.student.first_name + " " + subject.student.second_name + " " + subject.student.last_name) %></span>
+                                                    <% end %>
           <td class="p-1 border-2 border-gray-300"><%= subject.term %>
           <td class="p-1 border-2 border-gray-300"><%= subject.subject.name %>
           <td class="p-1 border-2 border-gray-300"><%= subject.term.start_date.inspect %>

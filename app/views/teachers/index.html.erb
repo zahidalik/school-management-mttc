@@ -3,6 +3,14 @@
 </div>
 
 
+<div class="my-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_teacher" do %>
+    <%= link_to new_teacher_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-2xl rounded hover:bg-green-400" do %>
+      New <i class="fas fa-chalkboard-teacher"></i> Teacher
+    <% end %>
+  <% end %>
+</div>
+
 <div class="mt-4 flex flex-col items-center">
   <div class="w-1/2 mt-3">
     <%= turbo_stream_from "teachers_list" %>
@@ -13,13 +21,3 @@
     <% end %>
   </div>
 </div>
-
-
-<div class="my-8 flex justify-center items-center">
-  <%= turbo_frame_tag "new_teacher" do %>
-    <%= link_to new_teacher_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light drop-shadow-2xl rounded hover:bg-green-400" do %>
-      New Teacher
-    <% end %>
-  <% end %>
-</div>
-

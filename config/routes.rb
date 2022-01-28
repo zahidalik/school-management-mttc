@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       get "excel-sheet", to: "classrooms#excel_index"
     end
   end
+  resources :student_terminal_subjects, only: [:show] do
+    resources :marks_report
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

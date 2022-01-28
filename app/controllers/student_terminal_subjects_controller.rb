@@ -3,13 +3,23 @@ class StudentTerminalSubjectsController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:term_id])
-    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(:start_day)
+    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(period_time: :asc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = StudentTerminalSubjectsPdf.new(@student, @term, @student_terminal_subjects)
+        send_data pdf.render,
+          filename: "#{@student.first_name}.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
   end
 
   def time_table
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:term_id])
-    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(:start_day)
+    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(period_time: :asc)
     render xlsx: "time_table", filename: "#{@student.first_name + " " + @student.second_name + " " + @student.last_name}", disposition: 'inline', template: "student_terminal_subjects/time_table"
   end
 
@@ -61,6 +71,15 @@ class StudentTerminalSubjectsController < ApplicationController
       end
     else
       render :new
+    end
+  end
+
+  def destroy
+    @student_terminal_subject = StudentTerminalSubject.find(params[:id])
+    if @student_terminal_subject.delete
+      respond_to do |format|
+        format.turbo_stream
+      end
     end
   end
 

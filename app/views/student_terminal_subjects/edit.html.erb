@@ -1,3 +1,5 @@
+<% provide(:button_name, "Edit subject") %>
+
 <%= turbo_frame_tag(dom_id(@student_terminal_subject)) do %>
   <%= render "form", student: @student, term: @term, student_terminal_subject: @student_terminal_subject %>
 <% end %>
