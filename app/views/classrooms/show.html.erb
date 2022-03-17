@@ -3,7 +3,7 @@
 </div>
 <div class="mt-2 flex flex-col justify-center items-center border-t-2 border-gray-500">
   <span class="pt-4 text-gray-700">All the starting dates will appear here</span>
-  <div class="mt-2 flex flex-row justify-center items-center">
+  <div class="mt-2 flex flex-row justify-center items-center space-x-2">
     <% @classroom_for_starting_dates.each do |s| %>
       <div class="bg-green-600 text-sm px-2 py-1 text-gray-50">
         <%= s.term.start_date.inspect %>

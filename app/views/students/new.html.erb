@@ -1,5 +1,6 @@
+<% provide(:button_name, "New Student") %>
 <%= turbo_frame_tag "new_student" do %>
-  <div class="w-auto h-auto bg-gray-200 border border-gray-500 flex justify-center items-center">
+  <div class="flex justify-center items-center">
     <%= render "form", student: @student  %>
   </div>
 <% end %>

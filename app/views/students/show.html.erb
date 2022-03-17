@@ -1,7 +1,10 @@
 <div class="my-6 text-3xl font-light text-gray-700 flex justify-center items-center">
-  <span class="flex flex-row justify-center items-center space-x-4">
+  <span class="flex flex-row justify-center items-center space-x-7">
     <span><%= @student.first_name %>'s Dashboard</span>
     <span class="text-gray-700"><%= @svg.html_safe %></span>
+    <% if @student.profile_pic.present? %>
+      <span><%= image_tag @student.profile_pic, class: "rounded-full w-16 h-16" %></span>
+    <% end %>
   </span>
 </div>
 <div class="flex justify-center items-center">
@@ -52,7 +55,7 @@
 
 <%= turbo_frame_tag "terms" do %>
   <div class="flex justify-around items-center">
-    <div class="mt-16 grid grid-cols-3 gap-3">
+    <div class="mt-16 grid grid-cols-4 gap-3">
       <% if @student.terms.any? %>
         <% @student_terms.each do |term| %>
           <%= render "terms/term", term: term %>

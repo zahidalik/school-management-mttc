@@ -9,6 +9,8 @@ class Student < ApplicationRecord
 
   has_many :terms
   has_many :student_terminal_subjects
+
+  has_one_attached :profile_pic
   
   after_create_commit { broadcast_prepend_to("students_list")}
   after_update_commit { broadcast_update_to("students_list")}

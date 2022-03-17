@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @student_terms = @student.terms.order(name: :desc)
+    @student_terms = @student.terms.order(name: :asc)
     @all_subjects = Subject.all.order(name: :asc)
     respond_to do |format|
       format.html
@@ -101,7 +101,7 @@ class StudentsController < ApplicationController
       :father_name, :mother_name, :d_o_b,
       :birth_cert, :contact_one, :contact_two, :city,
       :region, :religion, :qualifications,
-      :admission_date, :admission_number
+      :admission_date, :admission_number, :profile_pic
     )
   end
 end

@@ -4,6 +4,7 @@
       <th class="p-1 border-2 border-gray-400">Name</th>
       <th class="p-1 border-2 border-gray-400">Term</th>
       <th class="p-1 border-2 border-gray-400">Subject</th>
+      <th class="p-1 border-2 border-gray-400">Teacher</th>
       <th class="p-1 border-2 border-gray-400">Start Date</th>
       <th class="p-1 border-2 border-gray-400">Time</th>
     </tr>
@@ -16,6 +17,7 @@
                                                     <% end %>
           <td class="p-1 border-2 border-gray-300"><%= subject.term %>
           <td class="p-1 border-2 border-gray-300"><%= subject.subject.name %>
+          <td class="p-1 border-2 border-gray-300"><%= subject.teacher.full_name %>
           <td class="p-1 border-2 border-gray-300"><%= subject.term.start_date.inspect %>
           <td class="p-1 border-2 border-gray-300"><%= subject.period_time.strftime("%I:%M") %>
         </tr>

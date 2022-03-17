@@ -16,6 +16,24 @@
   <% end %>
 </div>
 
+<div class="mt-2 flex justify-center items-center">
+  <% unless @student_terminal_subjects.any? {|sub| sub.marks_report.nil? } %>
+    <%= link_to student_term_student_terminal_subjects_path(@student, @term, format: :pdf), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
+      <i class="fas fa-file-pdf"></i> Marks Report
+    <% end %>
+  <% else %>
+    <div class="px-2 py-1 bg-orange-600 text-gray-50">Please enter marks for the subjects to get Marks Report PDF</div>
+  <% end %>
+</div>
+
+<div class="my-4 flex justify-center items-center">
+  <%= turbo_frame_tag "new_student_terminal_subject" do %>
+    <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
+      Add New Terminal Subject
+    <% end %>
+  <% end %>
+</div>
+
 <div class="mt-4 flex flex-col justify-center items-center">    
   <%= turbo_stream_from "student_terminal_subjects_list" %>
   <%= turbo_frame_tag "student_terminal_subjects" do %>
@@ -24,15 +42,6 @@
     <% end %>
   <% end %>  
 </div>
-
-<div class="mt-8 flex justify-center items-center">
-  <%= turbo_frame_tag "new_student_terminal_subject" do %>
-    <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 text-2xl hover:bg-green-400 rounded-lg" do %>
-      Add New Terminal Subject
-    <% end %>
-  <% end %>
-</div>
-
 
 <% if @student_terminal_subjects.any? %>
   <div class="py-8 mt-8 bg-gray-100">

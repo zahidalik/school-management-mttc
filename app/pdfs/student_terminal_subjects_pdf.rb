@@ -21,13 +21,30 @@ class StudentTerminalSubjectsPdf
   # end
 
   def content
-    widths = [90,50,100,50,50,40,100]
+    widths = [150,90,90,40,60,100]
     cell_height = 15
-    font('Helvetica', size: 12) do
-      text "Name: #{@student.first_name} #{@student.second_name} #{@student.last_name}", align: :center
-      text "Term: #{@term.name}", align: :center
+
+    logo = "app/assets/images/logo.png" 
+    image logo, at: [12,720], height: 70
+
+    if @student.profile_pic.present?
+      profile_pic = ActiveStorage::Blob.service.send(:path_for, @student.profile_pic.key)
+      image profile_pic, at: [459, 720], width: 70, height: 70
     end
 
+    text "<font size='10' name='Times-Roman'>In the name of Almighty (SWT)</font>", inline_format: true, align: :center
+    move_down 5
+    font('Helvetica', size: 13) do
+      text "WALIUL ASR EDUCATION CENTRE", align: :center
+      move_down 5
+      text "MUSLIM TEACHER TRAINING COURSE", align: :center, style: :bold
+      move_down 5
+      text "STUDENT’S ACADEMIC AND PERSONAL PROGRESS CARD", align: :center
+    end
+    move_down 15
+    text "<font size='16' name='Helvetica'><b><u>#{@student.first_name} #{@student.second_name} #{@student.last_name}</u></b></font>", inline_format: true, align: :center
+    text "<font size='13' name='Times-Roman'>#{@term.name}, #{@term.end_date.strftime("%B %Y")}</font>", inline_format: true, align: :center
+    
     # bounding_box([0, cursor], width: 400, height: 90) do
     #   stroke_bounds
     #   move_down 10
@@ -42,16 +59,73 @@ class StudentTerminalSubjectsPdf
     # @student.admission_date
     # @student.admission_number}"
     move_down 10
-    heading = [["Subject", "Credits", "Teacher", "Classroom", "From", "To", "Time", "Remarks"]]
+
+    heading = [["Subject", "Written Exam", "Oral Exam", "Total", "Credits", "Remarks"]]
     table(heading, column_widths: widths) do
       row(0).border_width = 2
       row(0).font_style = :bold
+      row(0).background_color = "DCDCDC"
+      row(0).align = :center
     end
+
+    overall_marks = 0
+    marks_with_credits = 0
+    total_credits = 0
     @student_terminal_subjects.each do |sub|
-      table([ [sub.subject.name, sub.subject.credits, sub.teacher.full_name, sub.classroom.name, sub.start_day, sub.end_day, sub.period_time.strftime("%I:%M %P"), sub.remarks ]], column_widths: widths) do
+      overall_marks += sub.marks_report.total
+      total_credits += sub.subject.credits
+      marks_with_credits += sub.marks_report.total * sub.subject.credits
+    
+      table([ [sub.subject.name, sub.marks_report.written, sub.marks_report.oral, sub.marks_report.total, sub.subject.credits, sub.marks_report.remarks ]], column_widths: widths) do
         row(0).font = 'Helvetica'
         row(0).size = 12
+        column(1..4).align = :center
       end
+    end
+
+    percentage_by_credits = (marks_with_credits / total_credits).round(1)
+
+    case percentage_by_credits
+    when 90..100
+      grade = "A+"
+    when 80..89
+      grade = "A"
+    when 70..79
+      grade = "B"
+    when 60..69
+      grade = "C"
+    when 50..59
+      grade ="D"
+    when 0..49
+      grade = "Fail"
+    end
+
+    table_input = [["Grand Total of Marks: #{overall_marks}", "Percentage by credits: #{percentage_by_credits}", "Grade: #{grade}"]]
+    table(table_input, width: 530) do
+      row(0).border_width = 2
+      row(0).font_style = :bold
+      row(0).background_color = "DCDCDC"
+      row(0).align = :center
+    end
+    
+    move_down 13
+
+    table([["Class teacher's comment:"], ["Head of MTTC:"]], width: 530)
+
+    data = [["Description", "Grade", "Description", "Grade"],
+            ["Attendance in prayers", " ", "Participation in competitions", ""],
+            ["Behaviour in dormitory", " ", "Respect to others", " "],
+            ["Care of property", " ", "Honesty", " "],
+            ["Cleanliness", " ", "Akhlaq", " "],
+            ["Hijab", " ", "Overall grade", " "],
+            ["School closes on", " ", "School reopens on", " "]]
+    
+    move_down 13
+
+    table(data, width: 530) do
+      row(0).font_style = :bold
+      row(0).background_color = "DCDCDC"
+      row(0).align = :center
     end
   end
 end
