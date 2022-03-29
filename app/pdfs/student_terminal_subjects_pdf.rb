@@ -127,5 +127,14 @@ class StudentTerminalSubjectsPdf
       row(0).background_color = "DCDCDC"
       row(0).align = :center
     end
+    
+    move_down 10
+
+    legend = [["A+ = 90% - 100%", "A = 80% - 89%", "B = 70% - 79%", "C = 60% - 69%", "D = 50% - 59%", "Fail = 0% - 49%"]]
+    
+    table(legend, width: 530) do
+      row(0).background_color = "DCDCDC"
+      row(0).align = :center
+    end
   end
 end
