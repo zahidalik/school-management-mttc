@@ -4,6 +4,7 @@ class StudentTerminalSubjectsController < ApplicationController
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:term_id])
     @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(period_time: :asc)
+    @student_terminal_cocurriculums = @student.student_terminal_cocurriculums.where(term_id: @term.id).order(id: :asc)
     respond_to do |format|
       format.html
       format.pdf do

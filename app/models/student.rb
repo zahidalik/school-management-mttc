@@ -9,6 +9,7 @@ class Student < ApplicationRecord
 
   has_many :terms
   has_many :student_terminal_subjects
+  has_many :student_terminal_cocurriculums
 
   has_one_attached :profile_pic
   

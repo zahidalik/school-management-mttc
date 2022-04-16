@@ -6,7 +6,8 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find(params[:id])
-    @teacher_terminal_subjects_without_duplication = @teacher.student_terminal_subjects.uniq do |class_subject|
+    @teacher_terminal_subjects = @teacher.student_terminal_subjects
+    @teacher_terminal_subjects_without_duplication = @teacher_terminal_subjects.uniq do |class_subject|
       # class_subject.subject.name
       # class_subject.term.name
       class_subject.period_time

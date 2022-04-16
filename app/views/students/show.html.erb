@@ -1,4 +1,4 @@
-<div class="my-6 text-3xl font-light text-gray-700 flex justify-center items-center">
+<div class="my-6 text-3xl font-light text-gray-700 flex justify-center items-center space-x-3">
   <span class="flex flex-row justify-center items-center space-x-7">
     <span><%= @student.first_name %>'s Dashboard</span>
     <span class="text-gray-700"><%= @svg.html_safe %></span>
@@ -8,7 +8,7 @@
   </span>
 </div>
 <div class="flex justify-center items-center">
-  <div class="flex flex-col justify-center items-center md:grid md:grid-cols-4 md:gap-2 text-gray-700">
+  <div class="flex flex-col justify-center items-center md:grid md:grid-cols-3 md:gap-2 text-gray-700">
     <div><u>Name:</u> 
       <%= @student.first_name %>
       <%= @student.second_name %>
@@ -52,6 +52,12 @@
   </div>
 </div>
 
+<div class="mt-4 flex justify-center items-center">
+  <%= link_to edit_student_path(@student), class: "w-2/3 px-2 py-1 bg-blue-600 text-lg text-gray-100 flex justify-center items-center" do %>
+    Edit
+  <% end %>
+</div>
+
 
 <%= turbo_frame_tag "terms" do %>
   <div class="flex justify-around items-center">
@@ -74,7 +80,7 @@
 <div class="mt-8 flex justify-center items-center">
   <%= turbo_frame_tag "new_term" do %>
     <%= link_to new_student_term_path(@student), class: "px-4 py-2 bg-green-600 text-lg text-gray-50 shadow-xl hover:bg-green-400" do %>
-      Add New Term
+      Add New Term / Entrance / Already Finished
     <% end %>
   <% end %>
 </div>

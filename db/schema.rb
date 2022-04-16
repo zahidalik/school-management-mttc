@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_124910) do
+ActiveRecord::Schema.define(version: 2022_04_14_115243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 2022_01_29_124910) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cocurriculums", force: :cascade do |t|
+    t.string "name"
+    t.text "strategies"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "marks_reports", force: :cascade do |t|
     t.float "written"
     t.float "oral"
@@ -58,6 +65,23 @@ ActiveRecord::Schema.define(version: 2022_01_29_124910) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["student_terminal_subject_id"], name: "index_marks_reports_on_student_terminal_subject_id"
+  end
+
+  create_table "student_terminal_cocurriculums", force: :cascade do |t|
+    t.string "teacher"
+    t.string "supervisor"
+    t.time "session_time"
+    t.string "start_day"
+    t.string "end_day"
+    t.string "venue"
+    t.bigint "student_id", null: false
+    t.bigint "term_id", null: false
+    t.bigint "cocurriculum_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cocurriculum_id"], name: "index_student_terminal_cocurriculums_on_cocurriculum_id"
+    t.index ["student_id"], name: "index_student_terminal_cocurriculums_on_student_id"
+    t.index ["term_id"], name: "index_student_terminal_cocurriculums_on_term_id"
   end
 
   create_table "student_terminal_subjects", force: :cascade do |t|
@@ -87,8 +111,8 @@ ActiveRecord::Schema.define(version: 2022_01_29_124910) do
     t.string "mother_name"
     t.date "d_o_b"
     t.string "birth_cert"
-    t.integer "contact_one"
-    t.integer "contact_two"
+    t.string "contact_one"
+    t.string "contact_two"
     t.string "city"
     t.string "region"
     t.string "religion"
@@ -131,6 +155,9 @@ ActiveRecord::Schema.define(version: 2022_01_29_124910) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "marks_reports", "student_terminal_subjects"
+  add_foreign_key "student_terminal_cocurriculums", "cocurriculums"
+  add_foreign_key "student_terminal_cocurriculums", "students"
+  add_foreign_key "student_terminal_cocurriculums", "terms"
   add_foreign_key "student_terminal_subjects", "classrooms"
   add_foreign_key "student_terminal_subjects", "students"
   add_foreign_key "student_terminal_subjects", "subjects"

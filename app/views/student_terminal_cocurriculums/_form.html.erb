@@ -1,0 +1,38 @@
+<%= form_for([student, term, student_terminal_cocurriculum], html: {class: "flex flex-col space-y-2" }) do |f| %>
+  <%# <%= f.error_notification message: f.object.errors[:base].to_sentence %>
+  <% if student_terminal_cocurriculum.errors.any? %>
+    <div class="px-2 py-1 bg-red-300 border-red-500 rounded text-red-500 flex flex-col justify-center items-center">
+      Errors:
+      <ul>
+        <% student_terminal_cocurriculum.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :session_time, class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.time_field :session_time, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.label :start_day, "From:", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.select :start_day, ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"], {}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.label :end_day, "To", class: "mr-1 text-sm text-gray-700 font-semibold"%>
+  <%= f.select :end_day, ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"], {include_blank: " "}, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200"  %>
+
+  <%= f.label :cocurriculum_id, "Cocurriculum", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.collection_select :cocurriculum_id, Cocurriculum.order(:name), :id, :name, {include_blank: " "}, {class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200"} %>
+  <%# <%= f.select :classroom_id, Classroom.all %>
+
+  <%= f.label :teacher, "Teacher", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.text_field :teacher, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+  <%# <%= f.input :subject_id, collection: Subject.all %>
+
+  <%= f.label :supervisor, "Supervisor", class: "mr-1 text-sm text-gray-700 font-semibold" %>
+  <%= f.text_field :supervisor, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+  <%# <%= f.input :teacher_id, collection: Teacher.all %>
+
+  <%= f.label :venue, class: "mr-1 text-sm text-gray-700 font-semibold"%>
+  <%= f.text_field :venue, class: "mr-1 px-1 py-1 text-sm text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.submit yield(:button_name), class: "bg-green-600 px-3 py-1 text-sm text-gray-50 rounded-lg hover:bg-green-400" %>
+<% end %>

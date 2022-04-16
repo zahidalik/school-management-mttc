@@ -1,8 +1,16 @@
+<% if @term.name == 'Entrance' %>
+  <% provide(:button_name, "Add Entrance Subject") %>
+<% elsif @term.name == 'Already Finished' %>
+  <% provide(:button_name, "Add The Subject Already Finished") %>
+<% else %>
+  <% provide(:button_name, "Add New Terminal Subject") %>
+<% end %>
+
 <div class="w-full h-10 bg-orange-500 text-gray-200 flex justify-center items-center sticky top-14">
   <%= render "student_terminal_subjects/credits_count", student: @student, term: @term %>
 </div>
 
-<div class="mt-8 text-3xl font-extralight flex flex justify-center items-center">
+<div class="mt-8 text-4xl font-light flex flex justify-center items-center">
   <div>
     <%= @student.first_name %>
     <%= @student.second_name %>
@@ -16,37 +24,63 @@
   <% end %>
 </div>
 
-<div class="mt-2 flex justify-center items-center">
-  <% unless @student_terminal_subjects.any? {|sub| sub.marks_report.nil? } %>
-    <%= link_to student_term_student_terminal_subjects_path(@student, @term, format: :pdf), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
-      <i class="fas fa-file-pdf"></i> Marks Report
+<div class="bg-green-50">
+  <div class="mt-3 flex flex-col justify-center items-center">
+    <div class="pt-4 pb-3 text-3xl font-light text-gray-700 underline">Curricular Activities</div>
+    <% unless @student_terminal_subjects.any? {|sub| sub.marks_report.nil? } %>
+      <%= link_to student_term_student_terminal_subjects_path(@student, @term, format: :pdf), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
+        <i class="fas fa-file-pdf"></i> Marks Report
+      <% end %>
+    <% else %>
+      <div class="px-2 py-1 bg-orange-600 text-gray-50">Please enter marks for the subjects to get Marks Report PDF</div>
     <% end %>
-  <% else %>
-    <div class="px-2 py-1 bg-orange-600 text-gray-50">Please enter marks for the subjects to get Marks Report PDF</div>
-  <% end %>
+  </div>
+
+  <div class="my-4 flex justify-center items-center">
+    <%= turbo_frame_tag "new_student_terminal_subject" do %>
+      <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
+        <%= yield(:button_name) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="pt-4 pb-16 flex flex-col justify-center items-center">    
+    <%= turbo_stream_from "student_terminal_subjects_list" %>
+    <%= turbo_frame_tag "student_terminal_subjects" do %>
+      <% @student_terminal_subjects.each do |student_terminal_subject| %>
+        <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject, marks_id: @for_new_marks_report_dom %>
+      <% end %>
+    <% end %>  
+  </div>
 </div>
 
-<div class="my-4 flex justify-center items-center">
-  <%= turbo_frame_tag "new_student_terminal_subject" do %>
-    <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
-      Add New Terminal Subject
+<% unless @term.name == 'Entrance' || @term.name == 'Already Finished' %>
+<div class="pt-16 pb-2 bg-red-50">
+  <div class="flex justify-center items-center">
+    <%= turbo_frame_tag "new_student_terminal_cocurriculum" %>
+    <%= link_to new_student_term_student_terminal_cocurriculum_path, data: {turbo_frame: "new_student_terminal_cocurriculum" }, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
+      Add New Cocurriculum
     <% end %>
-  <% end %>
-</div>
-
-<div class="mt-4 flex flex-col justify-center items-center">    
-  <%= turbo_stream_from "student_terminal_subjects_list" %>
-  <%= turbo_frame_tag "student_terminal_subjects" do %>
-    <% @student_terminal_subjects.each do |student_terminal_subject| %>
-      <%= render "student_terminal_subjects/student_terminal_subject", student_terminal_subject: student_terminal_subject, marks_id: @for_new_marks_report_dom %>
+  </div>
+  <div class="pb-16 flex flex-col justify-center items-center">
+    <div class="pt-4 pb-3 text-3xl font-light text-gray-700 underline">Co-curricular Activities</div>
+    <% if @student_terminal_cocurriculums.any? %>
+      <%= turbo_stream_from "student_terminal_cocurriculums_list" %>
+      <%= turbo_frame_tag "student_terminal_cocurriculums" do %>
+        <% @student_terminal_cocurriculums.each do |student_terminal_cocurriculum| %>
+          <%= render "student_terminal_cocurriculums/student_terminal_cocurriculum", student_terminal_cocurriculum: student_terminal_cocurriculum %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div>No Cocurriculums entered</div>
     <% end %>
-  <% end %>  
+  </div>
 </div>
 
 <% if @student_terminal_subjects.any? %>
-  <div class="py-8 mt-8 bg-gray-100">
+  <div class="py-8 bg-gray-200">
     <div class="text-3xl font-extralight flex justify-center items-center">
-      Time table for: <%= @student.first_name %>
+      Time table for: <%= @student.first_name + " " + @student.second_name + " " + @student.last_name %>
       <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
         Back
       <% end %>
@@ -62,4 +96,5 @@
       <% end %>
     </div>
   </div>
+<% end %>
 <% end %>

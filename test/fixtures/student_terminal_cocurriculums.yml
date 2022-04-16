@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher: MyString
+  supervisor: MyString
+  session_time: 2022-04-01 11:49:07
+  start_day: MyString
+  end_day: MyString
+  venue: MyString
+  student: one
+  term: one
+  cocurriculum: one
+
+two:
+  teacher: MyString
+  supervisor: MyString
+  session_time: 2022-04-01 11:49:07
+  start_day: MyString
+  end_day: MyString
+  venue: MyString
+  student: two
+  term: two
+  cocurriculum: two

@@ -1,0 +1,4 @@
+<%= turbo_stream.append("cocurriculums", @cocurriculum) %>
+<%= turbo_stream.update("cocurriculums_count") do %>
+  Total Number of Cocurriculums: <%= Cocurriculum.count %>
+<% end %>

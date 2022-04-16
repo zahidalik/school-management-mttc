@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
+import CocurriculumFormController from "./cocurriculum_form_controller.js"
+application.register("cocurriculum-form", CocurriculumFormController)
+
+import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)

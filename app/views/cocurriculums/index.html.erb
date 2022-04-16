@@ -1,0 +1,22 @@
+<div class="w-full h-10 bg-orange-500 text-gray-200 flex justify-center items-center sticky top-14">
+  <%= render "cocurriculums/count" %>
+</div>
+
+
+<div class="my-8 flex justify-center items-center">
+  <%= turbo_frame_tag "new_cocurriculum"%>
+  <%= link_to new_cocurriculum_path, data: {turbo_frame: "new_cocurriculum" }, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-2xl rounded hover:bg-green-400" do %>
+    New Cocurriculum
+  <% end %>
+</div>
+
+<div class="mt-4 flex flex-col items-center">
+  <div class="w-1/2 mt-3">
+    <%= turbo_stream_from "cocurriculums_list" %>
+    <%= turbo_frame_tag "cocurriculums" do %>
+      <% @cocurriculums.each do |cocurriculum| %>
+        <%= render "cocurriculums/cocurriculum", cocurriculum: cocurriculum %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
