@@ -19,7 +19,9 @@
           <td class="p-1 border-2 border-gray-300"><%= subject.subject.name %>
           <td class="p-1 border-2 border-gray-300"><%= subject.teacher.full_name %>
           <td class="p-1 border-2 border-gray-300"><%= subject.term.start_date.inspect %>
-          <td class="p-1 border-2 border-gray-300"><%= subject.period_time.strftime("%I:%M") %>
+          <% if !!subject.period_time %>
+            <td class="p-1 border-2 border-gray-300"><%= subject.period_time.strftime("%I:%M") %>
+          <% end %>
         </tr>
       </tbody>
     <% end %>

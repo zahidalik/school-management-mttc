@@ -1,3 +1,15 @@
-<%= turbo_frame_tag(dom_id(@teacher)) do %>
-  <%= render "form", teacher: @teacher %>
+<% provide(:button_name, "Edit account of the teacher") %>
+
+<%= turbo_frame_tag "teacher_new_edit_modal" do %>
+  <div data-controller="form-modal" data-action="turbo:submit-end->form-modal#submitEnd">
+    <div class="min-h-screen w-screen bg-black bg-opacity-80 flex justify-center items-center fixed z-10">
+      <div class="bg-white bg-opacity-100 px-10 py-6 rounded">
+        <%= link_to teachers_path, class: "mx-2 text-xl text-gray-100 absolute top-10 right-80" do %>
+          <i class="fa-solid fa-circle-xmark"></i>
+        <% end %>
+        <div class="my-4 text-2xl text-gray-700 flex justify-center items-center">Edit Teacher</div>
+        <%= render "teachers/form", teacher: @teacher %>
+      </div>
+    </div>
+  </div>
 <% end %>

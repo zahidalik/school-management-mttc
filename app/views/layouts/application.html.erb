@@ -14,6 +14,11 @@
   <body>
     <%= render "layouts/navbar" %>
     <div class="min-h-screen">
+      <%= turbo_frame_tag "student_new_edit_modal" %>
+      <%= turbo_frame_tag "subject_new_edit_modal" %>
+      <%= turbo_frame_tag "cocurriculum_new_edit_modal"%>
+      <%= turbo_frame_tag "classroom_new_edit_modal" %>
+      <%= turbo_frame_tag "teacher_new_edit_modal" %>
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>

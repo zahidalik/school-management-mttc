@@ -5,16 +5,18 @@
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.teacher.full_name %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.classroom.name %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.start_day %> - <%= student_terminal_subject.end_day %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></div>
+    <% if !!student_terminal_subject.period_time %>
+      <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></div>
+    <% end %>
     <div class="bg-green-200"><%= student_terminal_subject.remarks %></div>
     <div>
       <%= link_to edit_student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject), class: "text-sm md:text-base text-blue-500" do %>
         <i class="far fa-edit"></i>
       <% end %>
     </div>
-    <%= button_to student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) , 
+    <%= link_to student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) , 
           class: "text-sm md:text-base text-red-500", 
-          method: :delete do %>
+          data: { turbo_method: :delete, turbo_confirm: "You are going to delete #{student_terminal_subject.subject.name} for #{student_terminal_subject.student.first_name}"} do %>
             <i class="far fa-trash-alt"></i>
     <% end %>
     <div>

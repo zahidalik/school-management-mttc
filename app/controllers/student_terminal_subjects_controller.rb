@@ -3,7 +3,7 @@ class StudentTerminalSubjectsController < ApplicationController
   def index
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:term_id])
-    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(period_time: :asc)
+    @student_terminal_subjects = @student.student_terminal_subjects.where(term_id: @term.id).order(subject_id: :asc)
     @student_terminal_cocurriculums = @student.student_terminal_cocurriculums.where(term_id: @term.id).order(id: :asc)
     respond_to do |format|
       format.html
@@ -77,7 +77,8 @@ class StudentTerminalSubjectsController < ApplicationController
 
   def destroy
     @student_terminal_subject = StudentTerminalSubject.find(params[:id])
-    if @student_terminal_subject.delete
+
+    if @student_terminal_subject.destroy
       respond_to do |format|
         format.turbo_stream
       end

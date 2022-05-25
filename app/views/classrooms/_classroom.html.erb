@@ -7,7 +7,7 @@
       <%= link_to classroom_path(classroom), data: {"turbo_frame": "_top"}, class: "mr-1 px-2 py-1 bg-sky-400 text-sm text-gray-800" do %>
         Timetables and Attendance Lists
       <% end %>
-      <%= link_to edit_classroom_path(classroom), class: "px-2 py-1 bg-sky-400 text-sm text-gray-800" do %>
+      <%= link_to edit_classroom_path(classroom), data: { turbo_frame: "classroom_new_edit_modal"}, class: "px-2 py-1 bg-sky-400 text-sm text-gray-800" do %>
         Edit class name
       <% end %>
     </div>

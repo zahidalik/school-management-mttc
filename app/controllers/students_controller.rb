@@ -79,6 +79,7 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    @suggested_admission_number = Student.last.admission_number + 1
   end
 
   def create

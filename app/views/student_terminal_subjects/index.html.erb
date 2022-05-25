@@ -10,7 +10,7 @@
   <%= render "student_terminal_subjects/credits_count", student: @student, term: @term %>
 </div>
 
-<div class="mt-8 text-4xl font-light flex flex justify-center items-center">
+<div class="mt-8 text-4xl font-light flex flex justify-center">
   <div>
     <%= @student.first_name %>
     <%= @student.second_name %>
@@ -19,28 +19,23 @@
   <div class="ml-2">
     <%= @term.name %>
   </div>
-  <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
-    Back
+  <%= link_to student_path(@student), class: "ml-2 bg-blue-700 hover:bg-blue-900 px-1 text-lg text-gray-50 rounded-xl flex items-center" do  %>
+    Show all the terms
   <% end %>
 </div>
 
 <div class="bg-green-50">
   <div class="mt-3 flex flex-col justify-center items-center">
     <div class="pt-4 pb-3 text-3xl font-light text-gray-700 underline">Curricular Activities</div>
-    <% unless @student_terminal_subjects.any? {|sub| sub.marks_report.nil? } %>
-      <%= link_to student_term_student_terminal_subjects_path(@student, @term, format: :pdf), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
-        <i class="fas fa-file-pdf"></i> Marks Report
-      <% end %>
-    <% else %>
-      <div class="px-2 py-1 bg-orange-600 text-gray-50">Please enter marks for the subjects to get Marks Report PDF</div>
+    <%= link_to student_term_student_terminal_subjects_path(@student, @term, format: :pdf), class: "mt-2 bg-blue-600 px-2 py-1 text-gray-50 shadow-xl" do %>
+      <i class="fas fa-file-pdf"></i> Marks Report
     <% end %>
   </div>
 
   <div class="my-4 flex justify-center items-center">
-    <%= turbo_frame_tag "new_student_terminal_subject" do %>
-      <%= link_to new_student_term_student_terminal_subject_path, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
-        <%= yield(:button_name) %>
-      <% end %>
+    <%= turbo_frame_tag "new_student_terminal_subject" %>
+    <%= link_to new_student_term_student_terminal_subject_path, data: { turbo_frame: "new_student_terminal_subject" }, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
+      <%= yield(:button_name) %>
     <% end %>
   </div>
 
@@ -56,14 +51,14 @@
 
 <% unless @term.name == 'Entrance' || @term.name == 'Already Finished' %>
 <div class="pt-16 pb-2 bg-red-50">
-  <div class="flex justify-center items-center">
+  <div class="flex flex-col justify-center items-center">
+    <div class="pt-4 pb-3 text-3xl font-light text-gray-700 underline">Co-curricular Activities</div>
     <%= turbo_frame_tag "new_student_terminal_cocurriculum" %>
     <%= link_to new_student_term_student_terminal_cocurriculum_path, data: {turbo_frame: "new_student_terminal_cocurriculum" }, class: "px-3 py-2 bg-green-600 text-gray-50 hover:bg-green-400 rounded-lg" do %>
       Add New Cocurriculum
     <% end %>
   </div>
   <div class="pb-16 flex flex-col justify-center items-center">
-    <div class="pt-4 pb-3 text-3xl font-light text-gray-700 underline">Co-curricular Activities</div>
     <% if @student_terminal_cocurriculums.any? %>
       <%= turbo_stream_from "student_terminal_cocurriculums_list" %>
       <%= turbo_frame_tag "student_terminal_cocurriculums" do %>
@@ -77,12 +72,13 @@
   </div>
 </div>
 
+<% unless @term.name === "Entrance" || @term.name === "Already Finished" %>
 <% if @student_terminal_subjects.any? %>
   <div class="py-8 bg-gray-200">
-    <div class="text-3xl font-extralight flex justify-center items-center">
+    <div class="text-3xl font-extralight flex justify-center">
       Time table for: <%= @student.first_name + " " + @student.second_name + " " + @student.last_name %>
-      <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
-        Back
+      <%= link_to student_path(@student), class: "ml-2 bg-blue-700 hover:bg-blue-900 px-1 text-lg text-gray-50 rounded-xl flex items-center" do  %>
+        Show all the terms
       <% end %>
     </div>
     <%= render "student_terminal_subjects/time_table" %>
@@ -91,10 +87,11 @@
   <div class="py-8 mt-8 bg-gray-100">
     <div class="text-3xl font-extralight flex justify-center items-center">
       No time table for: <%= @student.first_name %>  
-      <%= link_to student_path(@student), class: "ml-2 bg-blue-500 px-1 text-lg text-gray-50" do  %>
-        Back
+      <%= link_to student_path(@student), class: "ml-2 bg-blue-700 hover:bg-blue-900 px-1 text-lg text-gray-50 rounded-xl flex items-center" do  %>
+        Show all the terms
       <% end %>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>

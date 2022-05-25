@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="cocurriculum-form"
+// Connects to data-controller="form-modal"
 export default class extends Controller {
   connect() {
   }

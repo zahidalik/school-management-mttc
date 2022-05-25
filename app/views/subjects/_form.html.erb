@@ -1,11 +1,20 @@
-<%= simple_form_for subject, defaults: {
-            input_html: { class: "mr-4 pl-2 bg-white text-gray-700 text-lg border-2 rounded focus:outline-none focus:border-2 focus:border-sky-500 focus:ring-sky-500" },
-            label_html: { class: "mr-2 text-gray-700 text-xl font-light" },
-            error_html: { class: "mx-2 text-red-700"}
-          }, html: { class: "flex justify-center items-center" } do |f| %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence %>
-  <%= f.input :name %>
-  <%= f.input :book %>
-  <%= f.input :credits %>
-  <%= f.submit class: "px-2 py-1 bg-green-700 rounded text-gray-50 hover:bg-green-400" %>
+<%= form_for subject, html: { class: "flex flex-col space-y-3" } do |f| %>
+  <% if subject.errors.any? %>
+    <div>Errors:</div>
+    <ul>
+      <% subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :name, class: "text-gray-700 text-xl" %>
+  <%= f.text_field :name, class: "px-1 py-1 bg-gray-50 text-gray-700 text-lg rounded border-2 border-blue-200 focus:outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500" %>
+
+  <%= f.label :book, class: "text-gray-700 text-xl" %>
+  <%= f.text_field :book, class: "px-1 py-1 bg-gray-50 text-gray-700 text-lg rounded border-2 border-blue-200 focus:outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500" %>
+
+  <%= f.label :credits, class: "text-gray-700 text-xl" %>
+  <%= f.text_field :credits, class: "px-1 py-1 bg-white text-gray-700 text-lg rounded border-2 border-blue-200 focus:outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500" %>
+
+  <%= f.submit class: "px-4 py-3 bg-blue-700 rounded text-gray-50 hover:bg-blue-900" %>
 <% end %>

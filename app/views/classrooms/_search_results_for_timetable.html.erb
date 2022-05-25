@@ -21,7 +21,9 @@
         <td class="p-1 border-2 border-gray-300"><%= classroom_subject.term.name %></td>
         <td class="p-1 border-2 border-gray-300"><%= classroom_subject.term.start_date.inspect %></td>
         <td class="p-1 border-2 border-gray-300"><%= classroom_subject.term.end_date.inspect %></td>
-        <td class="p-1 border-2 border-gray-300"><%= classroom_subject.period_time.strftime("%I:%M") %></td>
+        <% if !!classroom_subject.period_time %>
+          <td class="p-1 border-2 border-gray-300"><%= classroom_subject.period_time.strftime("%I:%M") %></td>
+        <% end %>
         <td class="p-1 border-2 border-gray-300"><%= classroom_subject.start_day %> - <%= classroom_subject.end_day %></td>
         <td class="p-1 border-2 border-gray-300"><%= classroom_subject.remarks %></td>
       </tr>

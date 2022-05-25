@@ -19,7 +19,9 @@
           <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.teacher.full_name %></td>
           <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.classroom.name %></td>
           <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.start_day %> - <%= student_terminal_subject.end_day %></td>
-          <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></td>
+          <% if !!student_terminal_subject.period_time %>
+           <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></td>
+          <% end %>
           <td class="border-2 border-gray-400 px-2 py1"><%= student_terminal_subject.remarks %></td>
         </tr>
       <% end %>

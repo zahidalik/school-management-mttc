@@ -6,7 +6,7 @@
     <div class="text-sm text-gray-700">
       <%= subject.book %> |
       <strong><%= subject.credits %></strong> |
-      <%= link_to edit_subject_path(subject) do %>
+      <%= link_to edit_subject_path(subject), data: {turbo_frame: "subject_new_edit_modal"} do %>
         <strong>Edit</strong>
       <% end %>
     </div>

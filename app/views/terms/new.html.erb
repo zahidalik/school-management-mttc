@@ -1,5 +1,12 @@
 <% provide(:button_name, "New Term") %>
 
 <%= turbo_frame_tag "new_term" do %>
-  <%= render "form", student: @student, term: @term %>
+  <div data-controller="form-modal" data-action="turbo:submit-end->form-modal#submitEnd">
+    <div class="bg-white px-20 py-6 rounded shadow-2xl absolute scale-110 -translate-y-48 -translate-x z-50">
+      <%= link_to student_path(@student), class: "mx-2 text-xl text-gray-500 absolute top-4 right-4" do %>
+        <i class="fa-solid fa-delete-left"></i>
+      <% end %>
+      <%= render "form", student: @student, term: @term %>
+    </div>
+  </div>
 <% end %>

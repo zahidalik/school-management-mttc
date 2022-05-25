@@ -68,36 +68,55 @@ class StudentTerminalSubjectsPdf
       row(0).align = :center
     end
 
+    @student_terminal_subjects.map do |sub|
+      if !!sub.marks_report
+        table([ [sub.subject.name, sub.marks_report.written, sub.marks_report.oral, sub.marks_report.total, sub.subject.credits, sub.marks_report.remarks ]], column_widths: widths) do
+          row(0).font = 'Helvetica'
+          row(0).size = 12
+          column(1..4).align = :center
+        end
+      else
+        table([ [sub.subject.name, "N/A", "N/A", "N/A", sub.subject.credits, "Results awaited" ]], column_widths: widths) do
+          row(0).font = 'Helvetica'
+          row(0).size = 12
+          column(1..4).align = :center
+        end
+      end
+    end
+
     overall_marks = 0
     marks_with_credits = 0
     total_credits = 0
-    @student_terminal_subjects.each do |sub|
-      overall_marks += sub.marks_report.total
+
+    @student_terminal_subjects.map do |sub|
       total_credits += sub.subject.credits
-      marks_with_credits += sub.marks_report.total * sub.subject.credits
-    
-      table([ [sub.subject.name, sub.marks_report.written, sub.marks_report.oral, sub.marks_report.total, sub.subject.credits, sub.marks_report.remarks ]], column_widths: widths) do
-        row(0).font = 'Helvetica'
-        row(0).size = 12
-        column(1..4).align = :center
+      if !!sub.marks_report
+        overall_marks += sub.marks_report.total
+        marks_with_credits += sub.marks_report.total * sub.subject.credits
+      else
+        next
       end
     end
 
     percentage_by_credits = (marks_with_credits / total_credits).round(1)
 
-    case percentage_by_credits
-    when 90..100
-      grade = "A+"
-    when 80..89
-      grade = "A"
-    when 70..79
-      grade = "B"
-    when 60..69
-      grade = "C"
-    when 50..59
-      grade ="D"
-    when 0..49
-      grade = "Fail"
+    if @student_terminal_subjects.any? {|sub| !!sub.marks_report }
+      case percentage_by_credits
+      when 90.0..100
+        grade = "A+"
+      when 80.0..89.9
+        grade = "A"
+      when 70.0..79.9
+        grade = "B"
+      when 60.0..69.9
+        grade = "C"
+      when 50.0..59.9
+        grade ="D"
+      when 0.0..49.9
+        grade = "Fail"
+      end
+    else
+      grade = "N/A"
     end
 
     table_input = [["Grand Total of Marks: #{overall_marks}", "Percentage by credits: #{percentage_by_credits}", "Grade: #{grade}"]]
@@ -130,11 +149,11 @@ class StudentTerminalSubjectsPdf
     
     move_down 10
 
-    legend = [["A+ = 90% - 100%", "A = 80% - 89%", "B = 70% - 79%", "C = 60% - 69%", "D = 50% - 59%", "Fail = 0% - 49%"]]
+    # legend = [["A+ = 90% - 100%", "A = 80% - 89%", "B = 70% - 79%", "C = 60% - 69%", "D = 50% - 59%", "Fail = 0% - 49%"]]
     
-    table(legend, width: 530) do
-      row(0).background_color = "DCDCDC"
-      row(0).align = :center
-    end
+    # table(legend, width: 530) do
+    #   row(0).background_color = "DCDCDC"
+    #   row(0).align = :center
+    # end
   end
 end

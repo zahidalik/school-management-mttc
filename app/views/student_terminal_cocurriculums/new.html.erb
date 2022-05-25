@@ -2,7 +2,10 @@
 
 <%= turbo_frame_tag "new_student_terminal_cocurriculum" do %>
   <div data-controller="cocurriculum-form" data-action="turbo:submit-end->cocurriculum-form#submitEnd">
-    <div class="bg-gray-200 px-16 py-6 rounded shadow-2xl absolute -translate-y-20 -translate-x-24 z-50">
+    <div class="bg-white px-16 py-6 rounded shadow-2xl absolute scale-110 translate-y-4 -translate-x-44 z-50">
+      <%= link_to student_term_student_terminal_subjects_path(@student, @term), class: "mx-2 text-xl text-gray-500 absolute top-4 right-4" do %>
+        <i class="fa-solid fa-delete-left"></i>
+      <% end %>
       <div class="text-lg text-gray-800">New Cocurriculum</div>
       <%= render "form", student: @student, term: @term, student_terminal_cocurriculum: @student_terminal_cocurriculum %>
     </div>

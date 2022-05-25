@@ -4,10 +4,8 @@
 
 
 <div class="my-8 flex justify-center items-center">
-  <%= turbo_frame_tag "new_teacher" do %>
-    <%= link_to new_teacher_path, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-2xl rounded hover:bg-green-400" do %>
-      New <i class="fas fa-chalkboard-teacher"></i> Teacher
-    <% end %>
+  <%= link_to new_teacher_path, data: { turbo_frame: "teacher_new_edit_modal" }, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-2xl rounded hover:bg-green-400" do %>
+    New <i class="fas fa-chalkboard-teacher"></i> Teacher
   <% end %>
 </div>
 
