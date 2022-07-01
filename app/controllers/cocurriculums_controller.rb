@@ -19,6 +19,20 @@ class CocurriculumsController < ApplicationController
     end
   end
 
+  def edit
+    @cocurriculum = Cocurriculum.find(params[:id])
+  end
+
+  def update
+    @cocurriculum = Cocurriculum.find(params[:id])
+
+    if @cocurriculum.update(cocurriculum_params)
+      render :index
+    else
+      render :edit
+    end
+  end
+
   private
 
   def cocurriculum_params

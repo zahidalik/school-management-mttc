@@ -1,6 +1,6 @@
 <% provide(:button_name, "New Cocurriculum") %>
 
-<%= turbo_frame_tag "cocurriculum_new_edit_modal" do %>
+<%= turbo_frame_tag "modal" do %>
   <div data-controller="cocurriculum-form" data-action="turbo:submit-end->cocurriculum-form#submitEnd">
     <div class="min-h-screen w-full bg-black bg-opacity-80 flex justify-center items-center fixed z-10">
       <div class="bg-white bg-opacity-100 px-16 py-6 rounded">

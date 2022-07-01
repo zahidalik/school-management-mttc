@@ -7,9 +7,11 @@
       <%# <%= link_to teacher_path(teacher), data: {"turbo_frame": "_top"}, class: "mr-1 px-2 py-1 bg-cyan-600 text-sm text-gray-800" do %>
         <%# Show %>
       <%# <% end %>
-      <%# <%= link_to edit_teacher_path(teacher), class: "px-2 py-1 bg-cyan-600 text-sm text-gray-800" do %>
-        <%# Edit %>
-      <%# <% end %>
+      <%= link_to edit_cocurriculum_path(cocurriculum),
+          data: {turbo_frame: "modal"}, 
+          class: "px-2 py-1 bg-cyan-600 text-sm text-gray-800" do %>
+        Edit
+      <% end %>
     </div>
   </div>
 <% end %>

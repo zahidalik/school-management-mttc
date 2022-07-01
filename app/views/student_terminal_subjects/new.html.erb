@@ -1,13 +1,15 @@
 <% provide(:button_name, "Add subject") %>
 
-<%= turbo_frame_tag "new_student_terminal_subject" do %>
-  <div data-controller="cocurriculum-form" data-action="turbo:submit-end->cocurriculum-form#submitEnd">
-    <div class="bg-white px-16 py-6 rounded shadow-2xl absolute scale-110 -translate-y-16 -translate-x-20 z-50">
-      <%= link_to student_term_student_terminal_subjects_path(@student, @term), class: "mx-2 text-xl text-gray-500 absolute top-4 right-4" do %>
-        <i class="fa-solid fa-delete-left"></i>
+<%= turbo_frame_tag "student_terminal_subject_new_edit_modal" do %>
+  <div data-controller="form-modal" data-action="turbo:submit-end->form-modal#submitEnd">
+    <div class="min-h-screen w-screen bg-black bg-opacity-80 flex justify-center items-center fixed z-10">
+      <%= link_to student_term_student_terminal_subjects_path(@student, @term), class: "mx-2 text-xl text-gray-100 absolute top-10 right-80" do %>
+        <i class="fa-solid fa-circle-xmark"></i>
       <% end %>
-      <div class="text-lg text-gray-800">New Curriculum</div>
-      <%= render "form", student: @student, term: @term, student_terminal_subject: @student_terminal_subject %>
+      <div class="bg-white px-20 py-6 rounded shadow-2xl">
+        <div class="text-lg text-gray-800">New Curriculum</div>
+        <%= render "form", student: @student, term: @term, student_terminal_subject: @student_terminal_subject %>
+      </div>
     </div>
   </div>
 <% end %>

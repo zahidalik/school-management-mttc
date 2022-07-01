@@ -1,34 +1,45 @@
 <%= turbo_frame_tag(dom_id(student_terminal_subject)) do %>
-  <div class="border-b-2 border-gray-400 py-1 flex justify-center items-center space-x-3">
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.subject.name %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.subject.credits %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.teacher.full_name %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.classroom.name %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.start_day %> - <%= student_terminal_subject.end_day %></div>
-    <% if !!student_terminal_subject.period_time %>
-      <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></div>
-    <% end %>
-    <div class="bg-green-200"><%= student_terminal_subject.remarks %></div>
-    <div>
-      <%= link_to edit_student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject), class: "text-sm md:text-base text-blue-500" do %>
-        <i class="far fa-edit"></i>
-      <% end %>
+  <div class="bg-gray-50 px-2 py-1 rounded-lg border border-gray-300 flex justify-center items-center space-x-7">
+    <div class="p-2 border border-blue-400 rounded-lg flex flex-col space-y-2">
+      <div class="flex flex-row justify-around items-center">
+        <div class="font-bold"><%= student_terminal_subject.subject.name %></div>
+        <div>
+          <%= link_to edit_student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject), class: "text-sm text-blue-500" do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          
+          <%= link_to student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) , 
+                class: "text-sm text-red-500",
+                data: { turbo_method: :delete, turbo_confirm: "You are going to delete #{student_terminal_subject.subject.name} for #{student_terminal_subject.student.first_name}"} do %>
+                  <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex flex-row text-sm space-x-2">
+        <div class=""><%= student_terminal_subject.subject.credits %></div>
+        <div class="px-1 border border-green-600"><%= student_terminal_subject.teacher.full_name %></div>
+        <div class=""><%= student_terminal_subject.classroom.name %></div>
+        <div class=""><%= student_terminal_subject.start_day %> - <%= student_terminal_subject.end_day %></div>
+        <% if !!student_terminal_subject.period_time %>
+          <div class=""><%= student_terminal_subject.period_time.strftime("%I:%M %p") %></div>
+        <% end %>
+        <div class=""><%= student_terminal_subject.remarks %></div>
+      </div>
     </div>
-    <%= link_to student_term_student_terminal_subject_url(student_terminal_subject.student, student_terminal_subject.term, student_terminal_subject) , 
-          class: "text-sm md:text-base text-red-500", 
-          data: { turbo_method: :delete, turbo_confirm: "You are going to delete #{student_terminal_subject.subject.name} for #{student_terminal_subject.student.first_name}"} do %>
-            <i class="far fa-trash-alt"></i>
-    <% end %>
+    
     <div>
-      <% if student_terminal_subject.marks_report %>
+      <% if !!student_terminal_subject.marks_report %>
         <%= turbo_frame_tag(dom_id(student_terminal_subject.marks_report)) do %>
           <%= render "marks_report/marks_report", marks_report: student_terminal_subject.marks_report %>
         <% end %>
       <% else %>
-        <%= turbo_frame_tag "new_marks_report" do %>
-          <%= link_to new_student_terminal_subject_marks_report_url(student_terminal_subject), class: "px-2 py-1 text-sm bg-green-700 rounded text-gray-50" do %>
-            <i class="fa-solid fa-marker"></i> Enter marks
-          <% end %>
+        <%= turbo_frame_tag "new_marks_report_for_term#{student_terminal_subject.id}" do %>
+          <div class="p-2 border border-indigo-500 rounded-lg flex flex-col justify-center items-center space-y-2">
+            <%= link_to new_student_terminal_subject_marks_report_url(student_terminal_subject), class: "px-2 py-1 text-sm bg-green-700 rounded text-gray-50" do %>
+              <i class="fa-solid fa-marker"></i> Enter marks
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>

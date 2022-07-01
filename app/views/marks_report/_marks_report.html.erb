@@ -1,9 +1,19 @@
-<span class="border-2 border-green-700 px-1"><i class="fa-solid fa-pen text-green-700"></i> <%= marks_report.written %></span>
-<span class="border-2 border-orange-700 px-1"><i class="fa-solid fa-face-grin-beam text-orange-700"></i> <%= marks_report.oral %></span>
-<span class="border-2 border-blue-700 px-1"><i class="fa-solid fa-equals text-blue-700"></i> <%= marks_report.total %></span>
-<%= link_to edit_student_terminal_subject_marks_report_url(marks_report.student_terminal_subject, marks_report), class: "px-2 py-1 text-sm bg-orange-700 rounded text-gray-50" do %>
-  <i class="fa-solid fa-marker"></i> Edit marks
-<% end %>
+<div class="p-2 border border-indigo-500 rounded-lg flex flex-col justify-center items-center space-y-2"> 
+  <div class="flex justify-center items-center space-x-4">
+    <div class="font-bold">Marks</div>
+    <div>
+      <%= link_to edit_student_terminal_subject_marks_report_url(marks_report.student_terminal_subject, marks_report), class: "text-sm text-blue-600" do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex justify-center items-center text-sm space-x-2">
+    <span>written: <%= marks_report.written %></span>
+    <span>oral: <%= marks_report.oral %></span>
+    <span class="px-1 border border-orange-400 font-bold">total: <%= marks_report.total %></span>
+  </div>
+</div>
+
 <%# <%= link_to student_terminal_subject_marks_report_url(marks_report.student_terminal_subject, marks_report), data: { turbo_method: :delete, turbo_confirm: "Are you sure" }, class: "px-1 bg-red-600 text-gray-50" do %>
   <%# Delete %>
 <%# <% end %>

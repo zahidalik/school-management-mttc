@@ -1,0 +1,10 @@
+<%= turbo_stream.update("update_term_name_#{@term.id}") do %>
+  <div class="flex justify-between items-center">
+    <%= link_to student_term_student_terminal_subjects_url(@student, @term), data: {"turbo_frame": "admin_student_term_terminal_subjects_#{@term.id}"}, class: "bg-slate-100 px-1 rounded hover:bg-slate-400" do %>
+      <%= @term.name %>
+      <small class="italic">
+        <%= @term.start_date.inspect %> - <%= @term.end_date.inspect %>
+      </small>
+    <% end %>
+  </div>
+<% end %>

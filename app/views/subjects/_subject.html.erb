@@ -1,14 +1,19 @@
 <%= turbo_frame_tag(dom_id(subject)) do %>
-  <div class="mt-1 px-3 py-2 bg-teal-200">
-    <div class="p-1 bg-teal-400 text-xl text-gray-700">
-      <%= subject.name %>
-    </div>
-    <div class="text-sm text-gray-700">
-      <%= subject.book %> |
-      <strong><%= subject.credits %></strong> |
-      <%= link_to edit_subject_path(subject), data: {turbo_frame: "subject_new_edit_modal"} do %>
-        <strong>Edit</strong>
-      <% end %>
+  <div class="px-6 py-2 bg-teal-100 border border-slate-400 rounded shadow-lg hover:shadow-2xl transition delay-100">
+    <div class="flex justify-between items-center">
+      <div class="text-lg text-gray-700"><i class="fa-solid fa-book"></i> <%= subject.name %></div>
+      <div class="text-sm text-gray-700">
+        <%= subject.book %> |
+        <strong>credits: <%= subject.credits %></strong> |
+        <%= link_to edit_subject_path(subject), data: {turbo_frame: "modal"}, class: "px-2 py-1 bg-teal-100 hover:bg-teal-300 rounded-lg" do %>
+          <i class="fa-solid fa-link"></i> edit
+        <% end %>
+        <%= link_to subject_url(subject) , 
+            class: "text-sm text-red-500 pl-1",
+            data: { turbo_method: :delete, turbo_confirm: "You are going to delete #{subject.name}"} do %>
+              <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

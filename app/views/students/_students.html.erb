@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "student_search_list" do %>
+  <div class="flex justify-center items-center rounded bg-orange-500 absolute right-7 top-32 z-50">
+    <span class="h-10 pl-2 pr-1 py-1 text-lg text-gray-50 flex justify-center items-center">All students</span>
+    <%= render "students/count" %>
+  </div>
+
+  <div class="w-full mt-3 mb-16 bg-gray-50">
+    <%= turbo_stream_from "students_list" %>
+    <%= turbo_frame_tag "students" do %>
+    <div class="mx-8 flex flex-col space-y-3">
+      <% students.each do |student| %>
+        <%= render "students/student", student: student %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+<% end %>

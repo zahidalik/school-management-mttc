@@ -1,0 +1,35 @@
+<%= turbo_frame_tag "profile#{@teacher.id}" do %>
+  <div class="flex justify-center items-center text-gray-700">
+    <div class="px-2 flex flex-col justify-center items-center">
+      <div><u>Name:</u> 
+      <%= @teacher.full_name %>
+      </div>
+      <div><u>Contact Number:</u>  
+      <%= @teacher.contact_no %>
+      </div>
+    </div>
+    <div class="px-2 flex flex-col justify-center items-center border-r border-l border-slate-500">
+      <div><u>Address:</u> 
+      <%= @teacher.full_address %>
+      </div>
+      <div><u>Joining date:</u> 
+      <%= @teacher.joining_date %>
+      </div>
+    </div>
+    <div class="px-2 flex flex-col justify-center items-center">
+      <div><u>Residing in staff quarter?</u>
+      <%= @teacher.staff_quarter %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 flex justify-center items-center space-x-2">
+    <%= link_to edit_teacher_path(@teacher), data: {turbo_frame: "teacher_new_edit_modal" }, class: "px-1 bg-gray-800 rounded-lg text-gray-100 flex justify-center items-center" do %>
+      edit
+    <% end %>
+    <%= link_to teachers_path, class: "px-1 bg-gray-800 rounded-lg text-gray-100 justify-center items-center" do %>
+      close
+    <% end %>
+  </div>
+</div>
+<% end %>

@@ -1,8 +1,5 @@
-<%= turbo_stream.replace("marks") do %>
-  <div class="px-2 py-1 text-sm bg-orange-300 border border-orange-700 text-orange-700">
-    Marks report has been successfully added
-    <%= link_to student_term_student_terminal_subjects_url(@student, @term), data: {"turbo_frame": "_top"}, class: "ml-2 text-sm text-gray-700 text-orange-700" do%>
-      <i class="fa-solid fa-rectangle-xmark"></i>
-    <% end %>
-  </div>
+<%= turbo_stream.replace("new_marks_report_for_term#{@student_terminal_subject.id}") do %>
+  <%= turbo_frame_tag(dom_id(@student_terminal_subject.marks_report)) do %>
+    <%= render "marks_report/marks_report", marks_report: @student_terminal_subject.marks_report %>
+  <% end %>
 <% end %>

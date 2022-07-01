@@ -1,3 +1,5 @@
-<%= turbo_frame_tag "student_terminal_subject_credits_count" do %>
-  <div>Total Credits taken by <%= student.first_name %> in <%= term.name %>: <u><%= student.credits_in_current_term(student, term) %></u></div>
+<%= turbo_frame_tag "credits_for_#{@student.id}_in_#{term.id}" do %>
+  <%# <div>Total Credits taken by  in <%= student.first_name <%= term.name %><%#: <u>%>
+  <div class="px-1 rounded-xl bg-white text-gray-700 border border-cyan-600 text-sm font-bold"><%= student.credits_in_current_term(student, term) %></div>
+  <%# </u></div> %>
 <% end %>

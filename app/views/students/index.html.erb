@@ -1,24 +1,11 @@
-<div class="w-full h-10 bg-orange-500 text-gray-200 flex justify-center items-center sticky top-14">
-  <%= render "students/count" %>
-</div>
-
-<div class="mt-8 flex flex-col justify-center items-center">
+<%= turbo_frame_tag "admin_list" do %>
+  <div class="mt-8 flex flex-col justify-center items-center">
     <%= render "students/search_form" %>
-</div>
-
-<div class="my-8 flex justify-center items-center">
-  <%= link_to new_student_path, data: {turbo_frame: "student_new_edit_modal"}, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-xl rounded hover:bg-green-400" do %>
-    New <i class="fas fa-user-graduate"></i> Student
-  <% end %>
-</div>
-
-<div class="mt-4 flex flex-col items-center">
-  <div class="w-1/2 mt-3">
-    <%= turbo_stream_from "students_list" %>
-    <%= turbo_frame_tag "students" do %>
-      <% @students.each do |student| %>
-        <%= render "students/student", student: student %>
-      <% end %>
+  </div>
+  <div class="my-8 flex justify-center items-center">
+    <%= link_to new_student_path, data: {turbo_frame: "modal"}, class: "px-3 py-2 bg-green-700 text-2xl text-gray-50 font-light shadow-xl rounded hover:bg-green-400" do %>
+      New <i class="fas fa-user-graduate"></i> Student
     <% end %>
   </div>
-</div>
+  <%= render "students/students", students: @students %>
+<% end %>

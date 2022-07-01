@@ -1,15 +1,25 @@
-<%= simple_form_for teacher, 
-      defaults: { input_html: {
-      class: "pl-2 my-4 border border-zinc-400 rounded-lg text-lg font-light text-gray-700 fonts-normal focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" },
-      label_html: { class: "pr-2 text-lg font-light text-gray-700" },
-      error_html: { class: "ml-2 text-red-700"}
-      },
-      html: { class: "my-8 flex flex-col items-center" } do |f| %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence %>
-  <%= f.input :full_name %>
-  <%= f.input :contact_no %>
-  <%= f.input :full_address %>
-  <%= f.input :joining_date, start_year: Date.today.year - 25, end_year: Date.today.year + 1 %>
-  <%= f.input :staff_quarter, label: "Residing in staff quarters?", collection: ["Yes", "No"], default: "Yes" %>
+<%= form_for teacher, html: { class: "flex flex-col space-y-2" }  do |f| %>
+  <% if teacher.errors.any? %>
+    <ul class="bg-red-200 px-2 py-1 border border-red-400 text-red-400 list-disc list-inside">
+      <% teacher.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :full_name, class: "text-gray-700 font-semibold" %>
+  <%= f.text_field :full_name, class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200"%>
+  
+  <%= f.label :contact_no, class: "text-gray-700 font-semibold" %>
+  <%= f.text_field :contact_no, class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.label :full_address, class: "text-gray-700 font-semibold" %>
+  <%= f.text_field :full_address, class: "px-1 py-1 text-gray-700 rounded border border-gray-300 bg-gray-200" %>
+
+  <%= f.label :joining_date, class: "text-gray-700 font-semibold" %>
+  <%= f.date_field :joining_date, { class: "p-1 my-4 bg-gray-50 border border-zinc-400 rounded-lg text-sm text-gray-700 fonts-normal focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" } %>
+
+  <%= f.label :staff_quarter, label: "Residing in staff quarters?", collection: ["Yes", "No"], default: "Yes" %>
+  <%= f.select :staff_quarter, ["Yes", "No"], {include_blank: ""}, { class: "p-1 my-4 bg-gray-50 border border-zinc-400 rounded-lg text-sm text-gray-700 fonts-normal focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" } %>
+
   <%= f.submit yield(:button_name), class: "w-full bg-blue-700 mt-3 px-3 py-2 text-lg text-gray-50 rounded-lg hover:bg-blue-900" %>
 <% end %>

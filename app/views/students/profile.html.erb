@@ -1,0 +1,55 @@
+<%= turbo_frame_tag "profile#{@student.id}" do %>
+  <div class="flex justify-center items-center text-gray-700">
+    <div class="px-2 flex flex-col justify-center items-center">
+      <div><u>Father's Name:</u>  
+        <%= @student.father_name %>
+      </div>
+      <div><u>Mother's Name:</u> 
+        <%= @student.mother_name %>
+      </div>
+      <div><u>D.O.B:</u>
+        <%= @student.d_o_b %>
+      </div>
+    </div>
+
+    <div class="px-2 flex flex-col justify-center items-center border-r border-l border-slate-500">
+      <div><u>Birth Certificate:</u> 
+        <%= @student.birth_cert %>
+      </div>
+      <div><u>Contact:</u>
+        <%= @student.contact_one %>
+      </div>
+      <div><u>Another Contact:</u> 
+        <%= @student.contact_two %>
+      </div>
+      <div><u>Address:</u>
+        <%= @student.city %>,  
+        <%= @student.region %>
+      </div>
+    </div>
+
+    <div class="px-2 flex flex-col justify-center items-center">
+      <div><u>Religion:</u> 
+        <%= @student.religion %>
+      </div>
+      <div><u>Qualifications:</u> 
+        <%= @student.qualifications %>
+      </div>
+      <div><u>Admission Date:</u>
+        <%= @student.admission_date %>
+      </div>
+      <div><u>Admission Number:</u>
+        <%= @student.admission_number %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 flex justify-center items-center space-x-2">
+    <%= link_to edit_student_path(@student), data: {turbo_frame: "modal" }, class: "px-1 bg-gray-800 rounded-lg text-gray-100 flex justify-center items-center" do %>
+      edit
+    <% end %>
+    <%= link_to students_path, class: "px-1 bg-gray-800 rounded-lg text-gray-100 justify-center items-center" do %>
+      close
+    <% end %>
+  </div>
+<% end %>

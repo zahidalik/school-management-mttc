@@ -1,0 +1,23 @@
+<div class="min-h-screen flex flex-col items-center">
+  <div class="mt-20 md:w-2/3 w-screen md:px-16 px-8 py-8 rounded bg-slate-100 shadow-lg">
+    <div class="pb-8 text-4xl text-gray-700 font-extralight text-center">Log in</div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "w-full flex flex-col space-y-2"}) do |f| %>
+      <%= f.label :username, class: "text-gray-700 text-xl font-light" %>
+      <%= f.text_field :username, autofocus: true, placeholder: "username", class: "text-gray-700 text-lg px-2 py-1 rounded border border-blue-300 focus:outline-none focus:border-1 focus:border-blue-500 transition duration-200" %>
+
+      <%= f.label :password, class: "text-gray-700 text-xl font-light" %>
+      <%= f.password_field :password, class: "text-gray-700 text-lg px-2 py-1 rounded border border-blue-300 focus:outline-none focus:border-1 focus:border-blue-500 transition duration-200" %>
+    
+      <% if devise_mapping.rememberable? %>
+        <%= f.check_box :remember_me, class: "appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 cursor-pointer" %>
+        <%= f.label :remember_me, class: "text-gray-500 hover:text-gray-700 transition duration-200 cursor-pointer"%>
+      <% end %>
+      
+      <%= f.submit "Log in", class: "bg-blue-600 py-3 text-gray-50 text-lg rounded hover:bg-blue-800 cursor-pointer" %>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>
+
+  </div>
+</div>

@@ -38,6 +38,16 @@ class SubjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @subject = Subject.find(params[:id])
+
+    if @subject.delete
+      respond_to do |format|
+        format.turbo_stream 
+      end
+    end
+  end
+
   private
 
   def subject_params

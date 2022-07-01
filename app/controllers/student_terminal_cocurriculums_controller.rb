@@ -22,6 +22,24 @@ class StudentTerminalCocurriculumsController < ApplicationController
     end
   end
 
+  def edit
+    @student = Student.find(params[:student_id])
+    @term = Term.find(params[:term_id])
+    @cocurriculum = Cocurriculum.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:student_id])
+    @term = Term.find(params[:term_id])
+    @cocurriculum = Cocurriculum.find(params[:id])
+    
+    if @cocurriculum.update(student_terminal_cocurriculums_params)
+      render :index
+    else
+      render :edit
+    end
+  end
+  
   private
 
   def student_terminal_cocurriculums_params

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "new_marks_report" do %>
+<%= turbo_frame_tag "new_marks_report_for_term#{@student_terminal_subject.id}" do %>
   <%= turbo_frame_tag "marks" do %>
     <%= form_for([@student_terminal_subject, @marks_report], url: student_terminal_subject_marks_report_index_url, method: :post, html: { class: "flex flex-col justify-center items-center space-y-1" }) do |f| %>
 

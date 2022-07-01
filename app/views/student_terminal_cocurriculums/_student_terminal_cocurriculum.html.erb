@@ -3,12 +3,13 @@
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.cocurriculum.name %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.term.name %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.teacher %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.ssupervisor %></div>
+    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.supervisor %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.venue %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.end_day %></div>
     <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.start_day %> - <%= student_terminal_cocurriculum.end_day %></div>
-    <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.session_time.strftime("%I:%M %p") %></div>
-    <div class="bg-green-200"><%= student_terminal_cocurriculum.remarks %></div>
+    <% if !!student_terminal_cocurriculum.session_time %>
+      <div class="border-r-2 border-gray-400 pr-2"><%= student_terminal_cocurriculum.session_time.strftime("%I:%M %p") %></div>
+    <% end %>
     <div>
       <%= link_to edit_student_term_student_terminal_cocurriculum_url(student_terminal_cocurriculum.student, student_terminal_cocurriculum.term, student_terminal_cocurriculum), class: "text-sm md:text-base text-blue-500" do %>
         <i class="far fa-edit"></i>

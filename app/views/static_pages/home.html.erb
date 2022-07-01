@@ -1,10 +1,27 @@
-<div class="h-screen flex flex-col justify-center items-center">
-  <div class="w-5/6 h-4/6 md:w-4/5 md:h-3/5 flex flex-col items-center bg-gray-200 rounded-lg">
-    <h1 class="mt-12 mx-4 text-2xl md:text-3xl text-gray-800 font-light">Welcome!</h1>
-    <p class="my-8 mx-12 text-sm font-light md:text-2xl text-gray-800 md:font-thin">
-      This School Management System has been created to keep a
-      track of the progress of our students. This also, provides
-      supplementary resources for them.
-    </p>
+<div class="h-screen flex flex-col justify-center items-center space-y-7">
+  <div class="flex flex-col justify-center items-center">
+    <span class="text-5xl font-extralight">MUSLIM TEACHERS' TRAINING COURSE</span>
+  </div>
+  <div class="flex justify-center items-center space-x-7">
+    <div class="bg-green-700 px-8 py-4 text-4xl text-gray-50 font-light rounded flex flex-col justify-center items-center space-y-7">
+      <div><%= @teacher_count %></div>
+      <span class="text-base font-bold">teachers</span>
+    </div>
+    <div class="bg-blue-700 px-8 py-4 text-4xl text-gray-50 font-light rounded flex flex-col justify-center items-center space-y-7">
+      <div><%= @student_count %></div>
+      <span class="text-base font-bold">students</span>
+    </div>
+    <div class="bg-cyan-700 px-8 py-4 text-4xl text-gray-50 font-light rounded flex flex-col justify-center items-center space-y-7">
+      <div><%= @subject_count %></div>
+      <span class="text-base font-bold mt-4">topics</span>
+    </div>
+    <div class="bg-indigo-700 px-8 py-4 text-4xl text-gray-50 font-light rounded flex flex-col justify-center items-center space-y-7">
+      <div><%= @credit_count %></div>
+      <span class="text-base font-bold mt-4">credits</span>
+    </div>
+    <div class="bg-orange-500 px-8 py-4 text-4xl text-gray-50 font-light rounded flex flex-col justify-center items-center space-y-7">
+      <div>12</div>
+      <span class="text-base font-bold mt-4">terms</span>
+    </div>
   </div>
 </div>

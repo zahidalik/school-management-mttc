@@ -1,0 +1,8 @@
+<div data-controller="autohide">
+  <% if notice %>
+    <p class="flex justify-center items-center px-5 py-3 bg-green-800 rounded-lg text-white text-lg absolute right-10 top-32"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="flex justify-center items-center px-5 py-3 bg-red-600 rounded-lg text-white text-lg absolute right-10 top-32"><%= alert %></p>
+  <% end %>
+</div>

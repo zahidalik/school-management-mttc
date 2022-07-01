@@ -25,6 +25,10 @@ class TeachersController < ApplicationController
       use_path: true
     )
   end
+
+  def profile
+    @teacher = Teacher.find(params[:id])
+  end
   
   def workload
     @teacher = Teacher.find(params[:id])

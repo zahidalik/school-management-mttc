@@ -22,7 +22,7 @@ class StudentTerminalSubjectsPdf
 
   def content
     widths = [150,90,90,40,60,100]
-    cell_height = 15
+    cell_height = 13
 
     logo = "app/assets/images/logo.png" 
     image logo, at: [12,720], height: 70
@@ -33,17 +33,17 @@ class StudentTerminalSubjectsPdf
     end
 
     text "<font size='10' name='Times-Roman'>In the name of Almighty (SWT)</font>", inline_format: true, align: :center
-    move_down 5
-    font('Helvetica', size: 13) do
+    move_down 2
+    font('Helvetica', size: 12) do
       text "WALIUL ASR EDUCATION CENTRE", align: :center
-      move_down 5
+      move_down 2
       text "MUSLIM TEACHER TRAINING COURSE", align: :center, style: :bold
-      move_down 5
+      move_down 2
       text "STUDENT’S ACADEMIC AND PERSONAL PROGRESS CARD", align: :center
     end
-    move_down 15
-    text "<font size='16' name='Helvetica'><b><u>#{@student.first_name} #{@student.second_name} #{@student.last_name}</u></b></font>", inline_format: true, align: :center
-    text "<font size='13' name='Times-Roman'>#{@term.name}, #{@term.end_date.strftime("%B %Y")}</font>", inline_format: true, align: :center
+    move_down 10
+    text "<font size='14' name='Helvetica'><b><u>#{@student.first_name} #{@student.second_name} #{@student.last_name}</u></b></font>", inline_format: true, align: :center
+    text "<font size='11' name='Times-Roman'>#{@term.name}, #{@term.end_date.strftime("%B %Y")}</font>", inline_format: true, align: :center
     
     # bounding_box([0, cursor], width: 400, height: 90) do
     #   stroke_bounds
@@ -58,12 +58,12 @@ class StudentTerminalSubjectsPdf
     # @student.qualifications
     # @student.admission_date
     # @student.admission_number}"
-    move_down 10
-
+    move_down 7
     heading = [["Subject", "Written Exam", "Oral Exam", "Total", "Credits", "Remarks"]]
     table(heading, column_widths: widths) do
       row(0).border_width = 2
       row(0).font_style = :bold
+      row(0).size = 12
       row(0).background_color = "DCDCDC"
       row(0).align = :center
     end
@@ -72,13 +72,13 @@ class StudentTerminalSubjectsPdf
       if !!sub.marks_report
         table([ [sub.subject.name, sub.marks_report.written, sub.marks_report.oral, sub.marks_report.total, sub.subject.credits, sub.marks_report.remarks ]], column_widths: widths) do
           row(0).font = 'Helvetica'
-          row(0).size = 12
+          row(0).size = 11
           column(1..4).align = :center
         end
       else
         table([ [sub.subject.name, "N/A", "N/A", "N/A", sub.subject.credits, "Results awaited" ]], column_widths: widths) do
           row(0).font = 'Helvetica'
-          row(0).size = 12
+          row(0).size = 11
           column(1..4).align = :center
         end
       end
@@ -123,13 +123,19 @@ class StudentTerminalSubjectsPdf
     table(table_input, width: 530) do
       row(0).border_width = 2
       row(0).font_style = :bold
+      row(0).size = 12
       row(0).background_color = "DCDCDC"
       row(0).align = :center
     end
     
-    move_down 13
+    move_down 8
 
-    table([["Class teacher's comment:"], ["Head of MTTC:"]], width: 530)
+    table([["Class teacher's comment:"], ["Head of MTTC:"]], width: 530) do
+      row(0).font_style = :bold
+      row(1).font_style = :bold
+      row(0).size = 11
+      row(1).size = 11
+    end
 
     data = [["Description", "Grade", "Description", "Grade"],
             ["Attendance in prayers", " ", "Participation in competitions", ""],
@@ -139,15 +145,22 @@ class StudentTerminalSubjectsPdf
             ["Hijab", " ", "Overall grade", " "],
             ["School closes on", " ", "School reopens on", " "]]
     
-    move_down 13
+    move_down 8
 
     table(data, width: 530) do
       row(0).font_style = :bold
+      row(0).size = 12
+      row(1).size = 11
+      row(2).size = 11
+      row(3).size = 11
+      row(4).size = 11
+      row(5).size = 11
+      row(6).size = 11
       row(0).background_color = "DCDCDC"
       row(0).align = :center
     end
     
-    move_down 10
+    # move_down 5
 
     # legend = [["A+ = 90% - 100%", "A = 80% - 89%", "B = 70% - 79%", "C = 60% - 69%", "D = 50% - 59%", "Fail = 0% - 49%"]]
     

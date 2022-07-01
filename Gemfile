@@ -75,7 +75,7 @@ group :test do
 end
 
 # Custom gems
-gem 'simple_form'
+# gem 'simple_form'
 
 gem 'caxlsx'
 gem 'caxlsx_rails'
@@ -84,3 +84,4 @@ gem 'prawn'
 gem 'prawn-table', '~> 0.2.2'
 # for qr code
 gem "rqrcode", "~> 2.0"
+gem "devise", "~> 4.8"

@@ -1,0 +1,24 @@
+<div class="w-full flex">
+  <div class="h-screen w-72 flex flex-col border-r border-gray-400 bg-slate-100 overflow-auto">
+    <div class="pt-8 flex justify-center items-center text-gray-700 text-2xl"><i class="fa-solid fa-user-gear"></i> <%= current_admin.username %></div>
+    <div class="pt-4 pb-8 border-b border-gray-400 flex justify-center items-center text-gray-700 text-xl font-bold"><i class="fa-solid fa-toolbox"></i>Admin Actions</div>
+    <%= link_to students_url, data: {turbo_frame: "admin_list"}, class: "text-lg text-gray-700 border-b border-gray-400 pl-8 py-3 hover:bg-slate-300" do %>
+      <i class="fa-solid fa-users"></i> Students
+    <% end %>
+    <%= link_to teachers_url, data: {turbo_frame: "admin_list"}, class: "text-lg text-gray-700 border-b border-gray-400 pl-8 py-3 hover:bg-slate-300" do %>
+      <i class="fa-solid fa-user-group"></i> Teachers
+    <% end %>
+    <%= link_to subjects_url, data: {turbo_frame: "admin_list"}, class: "text-lg text-gray-700 border-b border-gray-400 pl-8 py-3 hover:bg-slate-300" do %>
+      <i class="fa-solid fa-book"></i> Subjects
+    <% end %>
+    <%= link_to classrooms_url, data: {turbo_frame: "admin_list"}, class: "text-lg text-gray-700 border-b border-gray-400 pl-8 py-3 hover:bg-slate-300" do %>
+      <i class="fa-solid fa-chalkboard"></i> Classes
+    <% end %>
+    <%= link_to cocurriculums_url, data: {turbo_frame: "admin_list"}, class: "text-lg text-gray-700 border-b border-gray-400 pl-8 py-3 hover:bg-slate-300" do %>
+      <i class="fa-solid fa-graduation-cap"></i> Co-Curriculums
+    <% end %>
+  </div>
+  <div class="h-screen w-full flex flex-col overflow-auto overflow-auto">
+    <%= turbo_frame_tag "admin_list" %>
+  </div>
+</div>

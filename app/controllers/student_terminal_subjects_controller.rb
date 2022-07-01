@@ -10,7 +10,7 @@ class StudentTerminalSubjectsController < ApplicationController
       format.pdf do
         pdf = StudentTerminalSubjectsPdf.new(@student, @term, @student_terminal_subjects)
         send_data pdf.render,
-          filename: "#{@student.first_name}.pdf",
+          filename: "#{@student.first_name + " " + @student.second_name + " " + @student.last_name}.pdf",
           type: 'application/pdf',
           disposition: 'inline'
       end

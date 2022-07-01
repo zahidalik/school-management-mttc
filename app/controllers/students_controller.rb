@@ -2,21 +2,20 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all.order(first_name: :asc)
-    @student = Student.new
   end
 
   def search
     if params.dig(:first_name_search).present?
       @students = Student.where('first_name ILIKE ?', "%#{params[:first_name_search]}%").order(first_name: :asc)
     else
-      @students = []
+      @students = Student.all.order(first_name: :asc)
     end
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update("search_results",
-          partial: "students/search_results",
+          turbo_stream.update("student_search_list",
+          partial: "students/students",
           locals: { students: @students })
         ]
       end
@@ -32,7 +31,7 @@ class StudentsController < ApplicationController
       format.pdf do
         pdf = StudentPdf.new(@student)
         send_data pdf.render,
-          filename: "#{@student.first_name}.pdf",
+          filename: "#{@student.first_name + " " + @student.second_name + " " + @student.last_name}.pdf",
           type: 'application/pdf',
           disposition: 'inline'
       end
@@ -64,6 +63,10 @@ class StudentsController < ApplicationController
     # IO.binwrite("/tmp/student.png", @png.to_s)
   end
 
+  def profile
+    @student = Student.find(params[:id])
+  end
+
   def edit
     @student = Student.find(params[:id])
   end
@@ -71,7 +74,7 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
     if @student.update(student_params)
-      redirect_to student_path(@student)
+      redirect_to student_url(@student)
     else
       render :edit
     end

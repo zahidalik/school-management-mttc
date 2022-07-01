@@ -1,5 +1,14 @@
 <% provide(:button_name, "Edit Term") %>
 
-<%= turbo_frame_tag(dom_id(@term)) do %>
-  <%= render "form", student: @student, term: @term %>
+<%= turbo_frame_tag "term_new_edit_modal" do %>
+  <div data-controller="form-modal" data-action="turbo:submit-end->form-modal#submitEnd">
+    <div class="min-h-screen w-screen bg-black bg-opacity-80 flex justify-center items-center fixed z-10">
+      <%= link_to student_path(@student), class: "mx-2 text-xl text-gray-100 absolute top-10 right-80" do %>
+        <i class="fa-solid fa-circle-xmark"></i>
+      <% end %>
+      <div class="bg-white px-20 py-6 rounded shadow-2xl"> 
+        <%= render "form", student: @student, term: @term %>
+      </div>
+    </div>
+  </div>
 <% end %>

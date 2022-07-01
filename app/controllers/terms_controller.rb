@@ -8,9 +8,12 @@ class TermsController < ApplicationController
     @student = Student.find(params[:student_id])
     @term = Term.find(params[:id])
     if @term.update(term_params)
-      render @term
+      respond_to do |format|
+        format.turbo_stream
+        format.html {render @term}
+      end
     else
-      render :edit
+      render :edit, status: :bad_request
     end
   end
 
